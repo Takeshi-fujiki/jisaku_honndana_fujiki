@@ -1,0 +1,81 @@
+@charset "utf-8";
+
+.header ul {
+    list-style: none;
+}
+.header-menu a {
+    text-decoration: none;
+} 
+.header-menu li {
+    float: left;
+    margin: 10px;
+    margin-right: 20px;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.top-img {
+    margin: 20px 10px;
+}
+
+
+.main-search {
+    text-align: center;
+    margin: 50px 0;
+}
+
+
+
+.left {
+    width: 10%;
+    display: flex;
+    margin: 0 auto;
+}
+
+
+
+/* top.bladeここまで */
+
+
+.book-janl h1 {
+    text-align: center;
+}
+.books-detail {
+    text-align: center;
+}
+.detail1 {
+    margin: 0 200px;
+    position: absolute;
+    top:15vw;
+    left: 22vw;
+}
+.detail2 {
+    margin: 0 200px;
+    position: absolute;
+    top:22vw;
+    left: 22vw;
+}
+.detail3 {
+    margin: 0 200px;
+    position: absolute;
+    top:28vw;
+    left: 22vw;
+}
+.detail4 {
+    margin: 0 200px;
+    position: absolute;
+    top:35vw;
+    left: 22vw;
+}
+
+
+.hondana img {
+    width: 30%;
+    height:35vw;
+}
+.hondana {
+    text-align: center;
+    /* position: relative; */
+}

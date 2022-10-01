@@ -11,6 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\DisplayController;
+use Illminate\Support\Facades\Auth;
+
+// Route::get('/', function () {
+//     return view('book_datail');
+// });
+
+
+
+Route::get('/',[DisplayController::class,'index']);
+
