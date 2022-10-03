@@ -15,13 +15,14 @@ class BooksTable extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('user_name','16')->nullable();
-            $table->string('email','16')->nullable();
-            $table->string('password','16')->nullable();
-            $table->string('remember_token','16')->nullable();
-            $table->tinyInteger('ban_flg')->default(0);
-            
-            $table->timestamps();
+            $table->string('name','64');
+            $table->string('author1','64');
+            $table->string('author2','64');
+            $table->string('author3','64');
+            $table->integer('type_id');
+            $table->integer('book_user_id');
+            $table->boolean('lending')->default('FALSE');
+            $table->timestamp();
         });
     }
 
