@@ -21,8 +21,7 @@ class BooksTable extends Migration
             $table->string('author3','64');
             $table->integer('type_id');
             $table->integer('book_user_id');
-            $table->boolean('lending')->default('FALSE');
-            $table->timestamp();
+            $table->boolean('lending')->default(0);
         });
     }
 

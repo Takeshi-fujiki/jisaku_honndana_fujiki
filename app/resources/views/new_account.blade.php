@@ -13,13 +13,14 @@
 
 <body>
 
-<div class="border col-5">
+<div class="d-flex align-items-center">
+<div class="border col-5 ml-30">
         <br>
         <h2>新規登録</h2>
         <br>
         <div class="row">
             <div class="col-md">
-                <form>
+                <form method="post" action="{{ route('article.store') }}">
                     <div class="form-group">
                         <label>ユーザ名</label>
                         <input type="text" name="name" class="form-control">
@@ -39,6 +40,8 @@
             </div>
         </div>
     </div>
+</div>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

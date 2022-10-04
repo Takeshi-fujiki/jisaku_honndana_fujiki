@@ -1,6 +1,8 @@
 @extends('layouts.layout')
 @section('content')
 <main>
+    
+
     <div class="main-search">
         <form action="" method="">
             <div class="serch">

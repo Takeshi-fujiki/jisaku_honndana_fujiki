@@ -11,7 +11,7 @@
 |
 */
 
-use App\Http\Controllers\DisplayController;
+use App\Http\Controllers\ArticleController;
 use Illminate\Support\Facades\Auth;
 
 // Route::get('/', function () {
@@ -20,5 +20,7 @@ use Illminate\Support\Facades\Auth;
 
 
 
-Route::get('/',[DisplayController::class,'index']);
+// Route::get('/',[DisplayController::class,'index']);
+
+Route::resource('article','ArticleController');
 
