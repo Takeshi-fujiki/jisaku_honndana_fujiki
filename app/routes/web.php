@@ -11,16 +11,10 @@
 |
 */
 
-use App\Http\Controllers\ArticleController;
-use Illminate\Support\Facades\Auth;
+Route::get('/', function () {
+    return view('welcome');
+});
 
-// Route::get('/', function () {
-//     return view('book_datail');
-// });
+Auth::routes();
 
-
-
-// Route::get('/',[DisplayController::class,'index']);
-
-Route::resource('article','ArticleController');
-
+Route::get('/home', 'HomeController@index')->name('home');
