@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\DisplayController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,5 +17,12 @@
 
 Auth::routes();
 
+Route::resource('/','DisplayController');
+
 // Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('article', 'ArticleController');
+
+Route::group(['middleware'=>'auth'],function() {
+
+    Route::resource('display','DisplayController');
+
+});
