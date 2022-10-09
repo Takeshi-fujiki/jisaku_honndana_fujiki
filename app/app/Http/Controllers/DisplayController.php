@@ -37,12 +37,7 @@ class DisplayController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-       
-        // return Comment::create([
-        //     'comment' => $request['comment'],
-        // ]);
-        
+    {    
         $comment = new Comment;
         $id = Auth::id();
 
@@ -50,13 +45,8 @@ class DisplayController extends Controller
         $comment->date = $request->date;
         $comment->user_id = $id;
         $comment->save();
-
-        $com = new Comment;
-        $comment = $com->where('user_id',Auth::id())->get()->toArray();
     
-        return view('mypage',[
-            'comments' => $comment,
-        ]);
+        return view('mypage');
     }
 
     /**
@@ -69,8 +59,7 @@ class DisplayController extends Controller
     {
         $com = new Comment;
         $comment = $com->where('user_id',Auth::id())->get()->toArray();
-        // $comment = Auth::user()->comment()->get();
-    
+
         return view('mypage',[
             'comments' => $comment,
         ]);
@@ -112,17 +101,38 @@ class DisplayController extends Controller
         $edit_id->user_id = $ID;
         $edit_id->save();
 
-        return view('mypage');
+        $comments = $comment->where('user_id',Auth::id())
+                            ->where('del_flg',0)
+                            ->get()->toArray();
+
+        return view('mypage',[
+            'comments' => $comments,
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Disiplay  $disiplay
+     * @param  \App\Display  $display
      * @return \Illuminate\Http\Response
+     * @param  int $id
      */
-    public function destroy(Disiplay $disiplay)
+    public function destroy(int $id ,Display $display)
     {
-        //
+        dd($display);
+        $comment = new Comment;
+        // $del = $comment->find($id);
+
+        // $a = 1;
+        $display['del_flg'] = 1;
+        $comment->save();
+
+        $comments = $comment->where('user_id',Auth::id())
+                            ->where('del_flg',0)
+                            ->get()->toArray();
+        
+        return view('mypage',[
+            'comments' => $comments,
+        ]);
     }
 }

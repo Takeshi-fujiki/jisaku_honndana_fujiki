@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 @section('content')
 
 <h2>コメント編集・削除</h2>
@@ -25,9 +25,6 @@
         <textarea type="text" name="comment" value="" class="form-control"></textarea><br>
         
         <button type="submit">編集</button>
-        <button type="submit">削除</button>
-
-        <!-- <a href="{{ route('display.show',['display' => Auth::user()->id]) }}">投稿</a> -->
     </div>
 </form>
 

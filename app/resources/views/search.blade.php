@@ -1,6 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 @section('content')
-
 <div class="main-top">
     <h2>本を探す</h2>
     <form action="" method="">
@@ -26,4 +25,5 @@
         <a href=""><img src="" alt="laravel"></a>
     </div>
 </div>
+
 @endsection

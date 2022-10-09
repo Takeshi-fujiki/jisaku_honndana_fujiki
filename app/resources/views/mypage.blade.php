@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 @section('content')
 
 <div class="mypage">
@@ -30,7 +30,10 @@
 <p>{{ Auth::user()->name }}さんのコメント一覧</p>
 
 @foreach($comments as $comment)
-<a href="{{ route('display.edit',['display' => $comment['id']],'edit') }}">#:{{ $comment['comment'] }}</a><br>
+<p>#:{{ $comment['comment'] }}
+    <a href="{{ route('display.edit',['display' => $comment['id']],'edit') }}">編集</a>
+    <a href="{{ route('display.destroy',['display' => $comment['id']]) }}">削除</a><br>
+</p>
 @endforeach
 
 @endsection
