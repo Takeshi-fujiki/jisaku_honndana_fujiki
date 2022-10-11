@@ -43,10 +43,15 @@ class DisplayController extends Controller
 
         $comment->comment = $request->comment;
         $comment->date = $request->date;
+        $comment->good = $request->good;
         $comment->user_id = $id;
         $comment->save();
+
+        $comments = $comment->where('user_id',Auth::id())->get()->toArray();
     
-        return view('mypage');
+        return view('mypage',[
+            'comments' => $comments,
+        ]);
     }
 
     /**
@@ -119,15 +124,14 @@ class DisplayController extends Controller
      */
     public function destroy(int $id ,Display $display)
     {
-        dd($display);
-        $comment = new Comment;
-        // $del = $comment->find($id);
 
-        // $a = 1;
-        $display['del_flg'] = 1;
-        $comment->save();
+        // dd($display);
+        $del = Comment::find($id);
 
-        $comments = $comment->where('user_id',Auth::id())
+        $del->del_flg = 1;
+        $del->save();
+
+        $comments = Comment::where('user_id',Auth::id())
                             ->where('del_flg',0)
                             ->get()->toArray();
         

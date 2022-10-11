@@ -1,29 +1,38 @@
 @extends('layouts.layout')
 @section('content')
-<div class="main-top">
-    <h2>本を探す</h2>
-    <form action="" method="">
-    <input type="search" name="search" placeholder="本を探す">
-    <input type="submit" name="submit" value="検索">
-</form>
-</div>
 
-<div class="book-janl">
-    <div class="janl-img1">
-        <a href=""><img src="" alt="html"></a>
-    </div>
-    <div class="janl-img2">
-        <a href=""><img src="" alt="css"></a>
-    </div>
-    <div class="janl-img3">
-        <a href=""><img src="" alt="java"></a>
-    </div>
-    <div class="janl-img4">
-        <a href=""><img src="" alt="php"></a>
-    </div>
-    <div class="janl-img5">
-        <a href=""><img src="" alt="laravel"></a>
+<div class="d-flex justify-content-center">
+    <div class="main-top text-center">
+        <h2>本を探す</h2>
+        <form action="{{ route('search.index') }}" method="GET">
+            <input type="search" name="search"  placeholder="本を探す">
+            <input type="submit" name="submit" value="検索">
+        </form>
     </div>
 </div>
 
+<div class="d-flex justify-content-center">
+    <h5 class="my-3 ml-3">検索結果</h5>
+</div>
+ 
+<div class="d-flex justify-content-center">
+ <div class="col-5 ml-3">
+     <table class="table table-striped table-hover">
+         <thead>
+             <tr>
+                 <th>本の名前</th>
+                 <th>著者</th>
+             </tr>
+         </thead>
+         <tbody>
+            @foreach($books as $book)
+             <tr>
+                 <td><a href="">{{ $book['name'] }}</a></td>
+                 <td>{{ $book['author1'] }},{{ $book['author2'] }},{{ $book['author3'] }}</td>
+            </tr>
+            @endforeach       
+         </tbody>
+     </table>
+ </div>
+</div>
 @endsection

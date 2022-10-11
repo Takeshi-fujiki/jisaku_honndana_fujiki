@@ -24,5 +24,7 @@ Route::resource('/','DisplayController');
 Route::group(['middleware'=>'auth'],function() {
 
     Route::resource('display','DisplayController');
+    Route::resource('user','UserController');
+    Route::resource('search','SearchController');
 
 });
