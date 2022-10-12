@@ -40,11 +40,19 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">新規登録</a>
-                                </li>
-                            @endif
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    新規登録 <span class="caret"></span>
+                                </a>
+                                
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if (Route::has('register'))
+                                    <a class="nav-link dropdown-item" href="{{ route('register') }}">ユーザ新規登録</a>
+                                    @endif
+                                    <a class="nav-link dropdown-item" href="{{ url('admin_register') }}">管理者新規登録</a>
+                                    <a class="nav-link dropdown-item" href="{{ url('system_register') }}">開発者新規登録</a>
+                                </div>
+                            </li>
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
