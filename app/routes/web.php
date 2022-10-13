@@ -17,14 +17,28 @@ use App\Http\Controllers\DisplayController;
 
 Auth::routes();
 
+
 Route::resource('/','DisplayController');
 
+
+// 開発者、管理者新規登録
 Route::get('admin_register', function () {
     return view('admin_register');
 });
 
 Route::get('system_register', function () {
     return view('system_register');
+});
+
+// 管理者ページ
+Route::get('admin_books', function () {
+    return view('admin_books');
+});
+Route::get('admin_add_books', function () {
+    return view('admin_add_books');
+});
+Route::get('admin_users', function () {
+    return view('admin_users');
 });
 
 // Route::get('/home', 'HomeController@index')->name('home');

@@ -8,16 +8,6 @@ use App\User;
 
 class AdminController extends Controller
 {
-
-        /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
     
     /**
      * Display a listing of the resource.
@@ -26,7 +16,11 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin_register');
+        $users = User::all()->toArray();
+
+        return view('admin_AllUsers',[
+            'users' => $users,
+        ]);
     }
 
      /**
@@ -38,12 +32,7 @@ class AdminController extends Controller
      */
     public function create(Request $request)
     {
-        return User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-            'role' => 5,
-        ]);
+        // 
     }
 
     /**
