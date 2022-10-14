@@ -40,6 +40,15 @@ Route::get('admin_add_books', function () {
 Route::get('admin_users', function () {
     return view('admin_users');
 });
+Route::get('admin_blackList', function () {
+    return view('admin_blackList');
+});
+Route::get('admin_UpClose', function () {
+    return view('admin_UpClose');
+});
+Route::get('admin_exceed', function () {
+    return view('admin_exceed');
+});
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
