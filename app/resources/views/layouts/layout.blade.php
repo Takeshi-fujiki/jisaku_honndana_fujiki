@@ -18,30 +18,27 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow mb-5">
-     <a class="navbar-brand ms-5" href="{{ url('/') }}">AcialLibrary</a>
+     <a class="navbar-brand ms-5" href="{{ url('/display') }}">AcialLibrary</a>
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-    
-      <div class="collapse navbar-collapse justify-content-end me-5" id="navbarNav4">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ route('display.show',['display' => Auth::id() ]) }}">マイページ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">HTML</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Javassript</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">PHP</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Laravel</a>
-                    </li>
-                </ul>
-        </div>
+
+    <div class="collapse navbar-collapse justify-content-end mx-5" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+    <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+            {{ Auth::user()->name }}さんでログイン中 <span class="caret"></span>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('display.show',['display' => Auth::id() ]) }}">マイページ</a>
+                <a class="dropdown-item" href="">アカウント情報</a>
+                <a class="dropdown-item" href="">ログアウト</a>
+            </div>
+    </li>
+    </ul>
+    </div>
+     
 </nav>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

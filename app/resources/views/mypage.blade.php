@@ -10,23 +10,12 @@
 <div class="d-flex justify-content-center">
 <div class="mybooks">
     <div class="mybooks1">
-        <a href=""><img src="" alt="1"></a>
+        @foreach($books as $book)
+        <a href=""><img src="" alt="mybook"></a>
+        <p><a href="{{ route('search.update',['search' => $book['id']]) }}">{{ $book['name'] }}</a></p>
+        @endforeach
     </div>
-    <div class="mybooks2">
-        <a href=""><img src="" alt="2"></a>
-    </div>
-    <div class="mybooks3">
-        <a href=""><img src="" alt="3"></a>
-    </div>
-    <div class="mybooks4">
-        <a href=""><img src="" alt="4"></a>
-    </div>
-    <div class="mybooks5">
-        <a href=""><img src="" alt="5"></a>
-    </div>
-    <div class="mybooks6">
-        <a href=""><img src="" alt="6"></a>
-    </div>
+    
 </div>
 </div>
 
@@ -51,6 +40,7 @@
                  <td>
                     <a href="{{ route('display.edit',['display' => $comment['id']],'edit') }}">編集</a>
                     <a href="{{ route('display.destroy',['display' => $comment['id']]) }}">削除</a>
+                    </form>
                 </td>
             </tr>
             @endforeach       

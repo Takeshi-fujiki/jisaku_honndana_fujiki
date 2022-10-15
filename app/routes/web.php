@@ -50,6 +50,10 @@ Route::get('admin_exceed', function () {
     return view('admin_exceed');
 });
 
+Route::get('/return', function () {
+    return view('return');
+});
+
 // Route::get('/home', 'HomeController@index')->name('home');
 
 // 全ユーザ
@@ -58,6 +62,8 @@ Route::group(['middleware'=>'auth','can:user-higher'],function() {
     Route::resource('display','DisplayController');
     Route::resource('user','UserController');
     Route::resource('search','SearchController');
+
+    // Route::patch('update/{search}','SearchController@update');
 
 });
 

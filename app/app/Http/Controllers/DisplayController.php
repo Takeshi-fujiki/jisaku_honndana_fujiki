@@ -6,6 +6,7 @@ use App\Disiplay;
 use Illuminate\Http\Request;
 use App\Comment;
 use App\User;
+use App\Book;
 use Illuminate\Support\Facades\Auth;
 
 class DisplayController extends Controller
@@ -48,9 +49,14 @@ class DisplayController extends Controller
         $comment->save();
 
         $comments = $comment->where('user_id',Auth::id())->get()->toArray();
+
+        $book = Book::where('book_user_id',Auth::id())
+                    ->where('lending',1)
+                    ->get()->toArray();
     
         return view('mypage',[
             'comments' => $comments,
+            'books' => $book,
         ]);
     }
 
@@ -62,11 +68,14 @@ class DisplayController extends Controller
      */
     public function show(Request $request)
     {
-        $com = new Comment;
-        $comment = $com->where('user_id',Auth::id())->get()->toArray();
+        $comment = Comment::where('user_id',Auth::id())->get()->toArray();
+        $book = Book::where('book_user_id',Auth::id())
+                    ->where('lending',1)
+                    ->get()->toArray();
 
         return view('mypage',[
             'comments' => $comment,
+            'books' => $book,
         ]);
     }
 
@@ -79,7 +88,6 @@ class DisplayController extends Controller
      */
     public function edit(int $id)
     {
-        // dd($id);
 
         return view('comment_edit',[
             'id' => $id,
@@ -96,22 +104,25 @@ class DisplayController extends Controller
      */
     public function update(int $id,Request $request,Disiplay $disiplay)
     {
-        // dd($request);
-        $comment = new Comment;
         $ID = Auth::id();
-        $edit_id = $comment->find($id);
+        $edit_id = Comment::find($id);
 
         $edit_id->comment = $request->comment;
         $edit_id->date = $request->date;
         $edit_id->user_id = $ID;
         $edit_id->save();
 
-        $comments = $comment->where('user_id',Auth::id())
+        $comments = Comment::where('user_id',Auth::id())
                             ->where('del_flg',0)
                             ->get()->toArray();
 
+        $book = Book::where('book_user_id',Auth::id())
+                ->where('lending',1)
+                ->get()->toArray();
+
         return view('mypage',[
             'comments' => $comments,
+            'books' => $book,
         ]);
     }
 
@@ -125,18 +136,6 @@ class DisplayController extends Controller
     public function destroy(int $id ,Display $display)
     {
 
-        // dd($display);
-        $del = Comment::find($id);
-
-        $del->del_flg = 1;
-        $del->save();
-
-        $comments = Comment::where('user_id',Auth::id())
-                            ->where('del_flg',0)
-                            ->get()->toArray();
-        
-        return view('mypage',[
-            'comments' => $comments,
-        ]);
+        // 
     }
 }

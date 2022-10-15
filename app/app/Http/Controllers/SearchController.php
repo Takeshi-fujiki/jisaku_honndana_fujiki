@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Book;
+use Illuminate\Support\Facades\Auth;
 
 class SearchController extends Controller
 {
@@ -58,7 +59,11 @@ class SearchController extends Controller
      */
     public function show($id)
     {
-        // 
+        $rent = Book::find($id);
+
+        return view('rental',[
+            'book' => $rent,
+        ]);
     }
 
     /**
@@ -69,7 +74,22 @@ class SearchController extends Controller
      */
     public function edit($id)
     {
-        //
+        $rent = Book::find($id);
+        $ID = Auth::id();
+        $echo ='';
+
+        if($rent->lending === 0) {
+            $rent->lending = 1;
+            $rent->book_user_id = $ID;
+            $rent->save();
+        }else {
+            $echo = 'この本は借りられません';
+        }
+
+        return view('rental_complete',[
+            'book' => $rent,
+            'echo' => $echo,
+        ]);
     }
 
     /**
@@ -79,9 +99,14 @@ class SearchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
-        //
+        // $del_flg = Comment::find($id);
+
+        // $del_flg->del_flg = 1;
+        // $del_flg->save();
+
+        // return view('return');
     }
 
     /**

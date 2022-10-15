@@ -22,6 +22,7 @@
              <tr>
                  <th>本の名前</th>
                  <th>著者</th>
+                 <th></th>
              </tr>
          </thead>
          <tbody>
@@ -29,6 +30,7 @@
              <tr>
                  <td><a href="">{{ $book['name'] }}</a></td>
                  <td>{{ $book['author1'] }},{{ $book['author2'] }},{{ $book['author3'] }}</td>
+                 <td><a href="">詳細</a>・<a href="{{ route('search.show',['search' => $book['id']]) }}">借りる</a></td>
             </tr>
             @endforeach       
          </tbody>
