@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Book;
 
 
 class AdminController extends Controller
@@ -16,7 +17,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $users = User::all()->toArray();
+        $users = User::where('id','>',1)->where('role','>=',10)->get();
 
         return view('admin_AllUsers',[
             'users' => $users,
@@ -54,7 +55,16 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+        $book = new Book;
+        $user = $book
+        ->select('books.name as book_name','users.name','books.lending')
+        ->join('users','books.book_user_id','users.id')->get();
+
+        // dd($user);
+        return view('admin_books',[
+            'books' => $user,
+        ]);
+
     }
 
     /**

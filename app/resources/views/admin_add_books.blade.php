@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 @section('content')
 
 
@@ -25,7 +25,17 @@
                 </div>
 
                 <div class="form-group">
-                <label class="control-label" name="author">著者</label>
+                <label class="control-label" name="author">著者1</label>
+                <input class="form-control mb-3" type="" name="author">
+                </div>
+
+                <div class="form-group">
+                <label class="control-label" name="author">著者2</label>
+                <input class="form-control mb-3" type="" name="author">
+                </div>
+
+                <div class="form-group">
+                <label class="control-label" name="author">著者3</label>
                 <input class="form-control mb-3" type="" name="author">
                 </div>
                 

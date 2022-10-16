@@ -50,8 +50,8 @@ Route::get('admin_exceed', function () {
     return view('admin_exceed');
 });
 
-Route::get('/return', function () {
-    return view('return');
+Route::get('/mypage', function () {
+    return view('mypage');
 });
 
 // Route::get('/home', 'HomeController@index')->name('home');

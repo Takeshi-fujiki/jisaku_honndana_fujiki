@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Book;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class SearchController extends Controller
 {
@@ -76,20 +77,32 @@ class SearchController extends Controller
     {
         $rent = Book::find($id);
         $ID = Auth::id();
-        $echo ='';
 
-        if($rent->lending === 0) {
+        // 同じリンクから来てる↓　lending=1(貸し出し中の本)でも借りられてしまう
+
+        if($rent['lending'] === 0) {
             $rent->lending = 1;
             $rent->book_user_id = $ID;
             $rent->save();
-        }else {
-            $echo = 'この本は借りられません';
+
+            $week = Carbon::now()->addWeeks(2)->format('Y年m月d日');
+
+            return view('rental_complete',[
+                'book' => $rent,
+                'week' => $week,
+            ]);
+
+        }else if($rent['lending'] === 1) {
+
+            $rent->lending = 0;
+            $rent->book_user_id = 0;
+            $rent->save();
+
+            return view('rental_complete',[
+                'book' => $rent,
+            ]);
         }
 
-        return view('rental_complete',[
-            'book' => $rent,
-            'echo' => $echo,
-        ]);
     }
 
     /**

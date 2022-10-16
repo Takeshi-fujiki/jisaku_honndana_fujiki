@@ -75,7 +75,9 @@
 @can('system-only')
 @elsecan('admin-higher')
 <div class="d-flex align-items-center flex-column">
-    <a class="btn  btn-primary p-2 bd-highlight mb-3" style="width:200px" href="{{ url('admin_books') }}">本の貸し出し状況</a>
+    <h2 class="mb-5">管理者メニュー</h2>
+
+    <a class="btn  btn-primary p-2 bd-highlight mb-3" style="width:200px" href="{{ route('admin.show',['admin' => 1]) }}">本の貸し出し状況</a>
     <a class="btn  btn-primary p-2 bd-highlight mb-3" style="width:200px" href="{{ url('admin_add_books') }}">本の追加</a>
     <a class="btn  btn-primary p-2 bd-highlight mb-3" style="width:200px" href="{{ url('admin_users') }}">ユーザ管理</a>
 </div>

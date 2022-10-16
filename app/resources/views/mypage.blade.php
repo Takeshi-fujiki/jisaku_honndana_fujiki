@@ -1,10 +1,19 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 @section('content')
 
-<div class="d-flex justify-content-center">
-    <div class="mypage">
-        <h3>自分の本棚</h3>
+<div class="d-flex justify-content-center mb-5">
+    <div class="main-top text-center">
+        <h2>本を探す</h2>
+        <form action="{{ route('search.index') }}" method="GET">
+            <input type="search" name="search"  placeholder="本を探す">
+            <input type="submit" name="submit" value="検索">
+        </form>
     </div>
+</div>
+
+
+<div class="d-flex justify-content-center">
+    <h3>自分の本棚</h3>
 </div>
 
 <div class="d-flex justify-content-center">
