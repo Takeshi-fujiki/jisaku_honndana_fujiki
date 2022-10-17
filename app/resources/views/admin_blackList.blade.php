@@ -15,7 +15,7 @@
              <tr>
                  <td>ユーザ名</td>
                  <td></td>
-                 <td><a href="">利用停止</a>・<a href="">解除</a></td>
+                 <td><a href="">利用停止</a>/<a href="">解除</a></td>
             </tr>
          </tbody>
      </table>

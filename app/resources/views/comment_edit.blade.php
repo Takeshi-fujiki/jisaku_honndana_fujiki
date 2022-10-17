@@ -11,13 +11,13 @@
             <div class="panel-body">
                 <div class="form-group">
                 <label class="control-label" name="date">投稿日</label>
-                <input class="form-control" type="date" name="date">
+                <input class="form-control" type="date" name="date" value="{{ $comment['date'] }}">
                 </div>
 
                 <div class="form-group">
                 <label class="control-label" name="comment">本の評価</label>
                     <select name="select">
-                        <option value="">--評価を選んでください--</option>
+                        <option value="">{{ $comment['good'] }}</option>
                         <option value="1">☆</option>
                         <option value="2">☆☆</option>
                         <option value="3">☆☆☆</option>
@@ -28,7 +28,7 @@
 
                 <div class="form-group">
                 <label class="control-label mb-3" name="comment">コメント</label>
-                <textarea type="text" name="comment" class="form-control"></textarea>
+                <textarea type="text" name="comment" class="form-control">{{ $comment['comment'] }}</textarea>
                 </div>
                 
                 <div class="form-group">

@@ -68,6 +68,7 @@ class DisplayController extends Controller
      */
     public function show(Request $request)
     {
+        // $rent = Book::find(Auth::id());
         $comment = Comment::where('user_id',Auth::id())->get()->toArray();
         $book = Book::where('book_user_id',Auth::id())
                     ->where('lending',1)
@@ -89,8 +90,11 @@ class DisplayController extends Controller
     public function edit(int $id)
     {
 
+        $comment = Comment::find($id);
+
         return view('comment_edit',[
             'id' => $id,
+            'comment' => $comment,
         ]);
     }
 
@@ -135,7 +139,6 @@ class DisplayController extends Controller
      */
     public function destroy(int $id ,Display $display)
     {
-
         // 
     }
 }

@@ -40,8 +40,8 @@
                 </div>
                 
                 <div class="form-group">
-                    <button class="btn  btn-primary btn-lg" onclick="history.back('/display')">戻る</button>
-                    <button class="btn btn-primary btn-lg">追加</button>
+                    <button class="btn  btn-danger bg-gradient shadow btn-lg" onclick="history.back('/display')">戻る</button>
+                    <button class="btn btn-danger bg-gradient shadow btn-lg">追加</button>
                 </div>
             </div>
         </div>

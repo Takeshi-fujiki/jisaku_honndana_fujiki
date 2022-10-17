@@ -81,11 +81,12 @@ class SearchController extends Controller
         // 同じリンクから来てる↓　lending=1(貸し出し中の本)でも借りられてしまう
 
         if($rent['lending'] === 0) {
+            $week = Carbon::now()->addWeeks(2)->format('Y年m月d日');
+
             $rent->lending = 1;
             $rent->book_user_id = $ID;
+            $rent->date = $week;
             $rent->save();
-
-            $week = Carbon::now()->addWeeks(2)->format('Y年m月d日');
 
             return view('rental_complete',[
                 'book' => $rent,

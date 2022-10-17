@@ -42,6 +42,6 @@
  </div>
 </div>
 <div class="d-flex justify-content-center">
-<button class="btn  btn-primary btn-lg" onclick="history.back('/display')">戻る</button>
+<button class="btn  btn-danger bg-gradient shadow btn-lg" onclick="history.back('/display')">戻る</button>
 </div>
 @endsection

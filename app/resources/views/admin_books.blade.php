@@ -33,6 +33,6 @@
 </div>
 
 <div class="d-flex justify-content-center">
-    <button class="btn  btn-primary" onclick="history.back()">戻る</button>
+    <button class="btn  btn-danger bg-gradient shadow" onclick="history.back()">戻る</button>
 </div>
 @endsection

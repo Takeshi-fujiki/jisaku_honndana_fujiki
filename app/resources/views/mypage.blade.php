@@ -1,7 +1,17 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="d-flex justify-content-center mb-5">
+@foreach($books as $book)
+<div class="d-flex justify-content-center">
+    <ul>
+        <li>
+            {{ $book['name'] }}の返却日は<span class="text-danger">【{{ $book['date'] }}】</span>です
+        </li>
+    </ul>
+</div>
+@endforeach
+
+<div class="d-flex justify-content-center mb-5 mt-5">
     <div class="main-top text-center">
         <h2>本を探す</h2>
         <form action="{{ route('search.index') }}" method="GET">
@@ -21,7 +31,7 @@
     <div class="mybooks1">
         @foreach($books as $book)
         <a href=""><img src="" alt="mybook"></a>
-        <p><a href="{{ route('search.update',['search' => $book['id']]) }}">{{ $book['name'] }}</a></p>
+        <p><a href="{{ route('search.show',['search' => $book['id']]) }}">{{ $book['name'] }}</a></p>
         @endforeach
     </div>
     
@@ -48,7 +58,7 @@
                  <td>{{ $comment['good'] }}</td>
                  <td>
                     <a href="{{ route('display.edit',['display' => $comment['id']],'edit') }}">編集</a>
-                    <a href="{{ route('display.destroy',['display' => $comment['id']]) }}">削除</a>
+                    <a href="{{ route('display.edit',['display' => $comment['id']],'edit') }}">削除</a>
                     </form>
                 </td>
             </tr>

@@ -42,9 +42,9 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request )
     {
-        //
+        // 
     }
 
     /**
@@ -55,12 +55,10 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        $book = new Book;
-        $user = $book
-        ->select('books.name as book_name','users.name','books.lending')
+        $user = Book::
+        select('books.name as book_name','users.name','books.lending')
         ->join('users','books.book_user_id','users.id')->get();
 
-        // dd($user);
         return view('admin_books',[
             'books' => $user,
         ]);
@@ -75,7 +73,7 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        // 
     }
 
     /**
@@ -87,7 +85,7 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // 
     }
 
     /**
@@ -98,6 +96,6 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // 
     }
 }

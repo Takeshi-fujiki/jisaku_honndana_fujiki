@@ -48,7 +48,23 @@ class SystemController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        $users = User::where('id','>',1)->where('role','>=',10)->get();
+
+        if($user['ban_flg'] === 0) {
+
+            $user->ban_flg = 1;
+            $user->save();
+
+            return redirect('admin');
+
+        }else if($user['ban_flg'] === 1) {
+
+            $user->ban_flg = 0;
+            $user->save();
+
+            return redirect('admin');
+        }
     }
 
     /**
@@ -59,7 +75,11 @@ class SystemController extends Controller
      */
     public function edit($id)
     {
-        //
+        $users = User::find($id);
+
+        return view('admin_userblock',[
+            'users' => $users,
+        ]);
     }
 
     /**

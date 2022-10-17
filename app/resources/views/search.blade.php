@@ -30,7 +30,9 @@
              <tr>
                  <td><a href="">{{ $book['name'] }}</a></td>
                  <td>{{ $book['author1'] }},{{ $book['author2'] }},{{ $book['author3'] }}</td>
-                 <td><a href="">詳細</a>・<a href="{{ route('search.show',['search' => $book['id']]) }}">借りる</a></td>
+                 <td><a href="">詳細</a>
+                 /
+                 <a href="{{ route('search.show',['search' => $book['id']]) }}">借りる</a></td>
             </tr>
             @endforeach       
          </tbody>

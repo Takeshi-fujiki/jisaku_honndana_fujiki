@@ -50,6 +50,7 @@ Route::get('admin_exceed', function () {
     return view('admin_exceed');
 });
 
+
 Route::get('/mypage', function () {
     return view('mypage');
 });
