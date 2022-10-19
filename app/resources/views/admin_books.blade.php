@@ -10,6 +10,7 @@
      <table class="table table-striped table-hover">
          <thead>
              <tr>
+                 <th></th>
                  <th>本の名前</th>
                  <th>貸出状況</th>
                  <th>貸出中ユーザ</th>
@@ -18,6 +19,7 @@
          <tbody>
         @foreach($books as $book)
             <tr>
+                <td><img src="{{ asset('storage/images/'.$book['image_path']) }}" width="50" height="70"></td>
                  <td>{{ $book['book_name'] }}</td>
                  @if($book['lending'] === 1)
                  <td>貸出中</td>

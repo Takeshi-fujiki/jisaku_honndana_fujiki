@@ -15,19 +15,19 @@ class TypesTableSeeder extends Seeder
 
             [
                 'name' => 'HTMLの教科書',
-                'category' => 'html',
+                'category' => 1,
             ],
             [
                 'name' => 'CSSの教科書',
-                'category' => 'css',
+                'category' => 2,
             ],
             [
                 'name' => 'phpの教科書',
-                'category' => 'php',
+                'category' => 3,
             ],
             [
                 'name' => 'Javaの教科書',
-                'category' => 'javascript',
+                'category' => 4,
             ],
         ];
 

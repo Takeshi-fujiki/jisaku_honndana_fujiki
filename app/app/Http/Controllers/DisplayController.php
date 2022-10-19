@@ -48,7 +48,9 @@ class DisplayController extends Controller
         $comment->user_id = $id;
         $comment->save();
 
-        $comments = $comment->where('user_id',Auth::id())->get()->toArray();
+        $comments = $comment->where('user_id',Auth::id())
+                            ->where('del_flg',0)   
+                            ->get()->toArray();
 
         $book = Book::where('book_user_id',Auth::id())
                     ->where('lending',1)
@@ -69,7 +71,9 @@ class DisplayController extends Controller
     public function show(Request $request)
     {
         // $rent = Book::find(Auth::id());
-        $comment = Comment::where('user_id',Auth::id())->get()->toArray();
+        $comment = Comment::where('user_id',Auth::id())
+                            ->where('del_flg',0)
+                            ->get()->toArray();
         $book = Book::where('book_user_id',Auth::id())
                     ->where('lending',1)
                     ->get()->toArray();
@@ -133,12 +137,28 @@ class DisplayController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Display  $display
+     * @param  \App\Disiplay  $display
      * @return \Illuminate\Http\Response
      * @param  int $id
      */
-    public function destroy(int $id ,Display $display)
+    public function destroy(int $id ,Disiplay $disiplay)
     {
-        // 
+        $del_id = Comment::find($id);
+
+        $del_id->del_flg = 1;
+        $del_id->save();
+
+        $comments = Comment::where('user_id',Auth::id())
+                            ->where('del_flg',0)
+                            ->get()->toArray();
+
+        $book = Book::where('book_user_id',Auth::id())
+                ->where('lending',1)
+                ->get()->toArray();
+
+        return view('mypage',[
+            'comments' => $comments,
+            'books' => $book,
+        ]);
     }
 }

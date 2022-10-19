@@ -96,7 +96,7 @@ class SearchController extends Controller
         }else if($rent['lending'] === 1) {
 
             $rent->lending = 0;
-            $rent->book_user_id = 0;
+            $rent->book_user_id = 1;
             $rent->save();
 
             return view('rental_complete',[

@@ -27,15 +27,14 @@
 </div>
 
 <div class="d-flex justify-content-center">
-<div class="mybooks">
-    <div class="mybooks1">
-        @foreach($books as $book)
-        <a href=""><img src="" alt="mybook"></a>
-        <p><a href="{{ route('search.show',['search' => $book['id']]) }}">{{ $book['name'] }}</a></p>
-        @endforeach
+    <div class="mybooks">
+        <div class="mybooks1 text-center">
+            @foreach($books as $book)
+            <a href=""><img src="{{ asset('storage/images/'.$book['image_path']) }}" width="50" height="70" alt="mybook"></a>
+            <p><a href="{{ route('search.show',['search' => $book['id']]) }}">{{ $book['name'] }}</a></p>
+            @endforeach
+        </div>
     </div>
-    
-</div>
 </div>
 
 <a href="{{ route('display.create') }}">コメント投稿</a>
@@ -58,7 +57,7 @@
                  <td>{{ $comment['good'] }}</td>
                  <td>
                     <a href="{{ route('display.edit',['display' => $comment['id']],'edit') }}">編集</a>
-                    <a href="{{ route('display.edit',['display' => $comment['id']],'edit') }}">削除</a>
+                    <a href="{{ route('comment.del',['id' => $comment['id']]) }}">削除</a>
                     </form>
                 </td>
             </tr>
