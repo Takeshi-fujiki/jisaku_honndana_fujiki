@@ -14,7 +14,7 @@
          <tbody>
             @foreach($users as $user)
              <tr>
-                <td><a href="" class="text-decoration-none">{{ $user['name'] }}</a></td>
+                <td>{{ $user['name'] }}</td>
                 @if($user['ban_flg'] == 1)
                 <td>利用停止中</td>
                 @elseif($user['ban_flg'] == 0)

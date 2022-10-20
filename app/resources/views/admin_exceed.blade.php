@@ -11,32 +11,37 @@
          <thead>
              <tr>
                  <th>返却超過:1ヶ月以上</th>
-                 <th></th>
+                 <th>返却日</th>
                  <th></th>
              </tr>
          </thead>
          <tbody>
+            @foreach($dates as $date)
              <tr>
-                 <td>ユーザ名</td>
-                 <td></td>
+                 <td>{{ $date['name'] }}</td>
+                 <td>{{ $date['date'] }}</td>
                  <td></td>
             </tr>
+            @endforeach
          </tbody>
      </table>
+
      <table class="table table-striped table-hover">
          <thead>
              <tr>
                  <th>返却超過:2週間以上</th>
-                 <th></th>
+                 <th>返却日</th>
                  <th></th>
              </tr>
          </thead>
          <tbody>
+            @foreach($users as $user)
              <tr>
-                 <td>ユーザ名</td>
-                 <td></td>
+                 <td>{{ $user['name'] }}</td>
+                 <td>{{ $user['date'] }}</td>
                  <td></td>
             </tr>
+            @endforeach
          </tbody>
      </table>
  </div>

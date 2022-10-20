@@ -11,4 +11,8 @@ class Book extends Model
     public function user() {
         return $this->belongsTo('App\User','id','book_user_id');
     }
+
+    protected $dates = [
+        'date',
+    ];
 }

@@ -18,7 +18,13 @@ class DisplayController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $comment = new Comment;
+        $comments = $comment->where('user_id',Auth::id())
+                            ->where('del_flg',0)   
+                            ->get()->toArray();
+        return view('user_comment',[
+            'comments' => $comments,
+        ]);
     }
 
     /**

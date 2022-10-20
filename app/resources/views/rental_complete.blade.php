@@ -5,6 +5,13 @@
 <div class="d-flex justify-content-center">
     <h4>ありがとうございました☆</h4>
 </div>
+<div class="d-flex justify-content-center mb-3">
+    <div class="mybooks">
+        <div class="mybooks1 text-center">
+            <a href=""><img src="{{ asset('storage/images/'.$book['image_path']) }}" width="150" height="230" alt="mybook"></a>
+        </div>
+    </div>
+</div>
 <div class="d-flex justify-content-center">
     <p>【{{ $book['name'] }}】</p>
     <p>を借りました。</p>
@@ -20,6 +27,13 @@
 @elseif($book['lending'] === 0 )
 <div class="d-flex justify-content-center">
     <h4>ありがとうございました☆</h4>
+</div>
+<div class="d-flex justify-content-center mb-3">
+    <div class="mybooks">
+        <div class="mybooks1 text-center">
+            <a href=""><img src="{{ asset('storage/images/'.$book['image_path']) }}" width="150" height="230" alt="mybook"></a>
+        </div>
+    </div>
 </div>
 <div class="d-flex justify-content-center">
     <p>【{{ $book['name'] }}】</p>

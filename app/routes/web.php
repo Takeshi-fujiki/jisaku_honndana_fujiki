@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\DisplayController;
 use App\Http\Controllers\DeleteController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Auth;
 use App\Comment;
 use App\Type;
@@ -21,9 +22,8 @@ use App\Type;
 
 Auth::routes();
 
-Route::get('comment_del/{id}',[DeleteController::class,'delete'])->name('comment.del');
 
-Route::resource('/','DisplayController');
+Route::resource('/','UserController');
 
 
 // Route::get('/home', 'HomeController@index')->name('home');
@@ -39,6 +39,8 @@ Route::group(['middleware'=>'auth','can:user-higher'],function() {
         return view('mypage');
     });
     // Route::patch('update/{search}','SearchController@update');
+    Route::get('comment_del/{id}',[DeleteController::class,'delete'])->name('comment.del');
+    
 
 });
 
@@ -66,9 +68,8 @@ Route::group(['middleware'=>'auth','can:admin-higher'],function() {
     Route::get('admin_UpClose', function () {
         return view('admin_UpClose');
     });
-    Route::get('admin_exceed', function () {
-        return view('admin_exceed');
-    });
+    Route::get('admin_exceed',[AdminController::class,'exceed'])->name('admin_exceed');
+    Route::get('admin_UpClose',[AdminController::class,'upclose'])->name('admin_upclose');
 
 });
 

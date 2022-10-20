@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center border rounded-start">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">ログイン</div>
@@ -53,8 +53,10 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-outline-dark">
+                                <button type="submit" class="btn">
+                                    <a href="">
                                     {{ __('Login') }}
+                                    </a>
                                 </button>
 
                                 @if (Route::has('password.request'))
@@ -70,4 +72,6 @@
         </div>
     </div>
 </div>
+
+
 @endsection

@@ -49,23 +49,8 @@ class AdminController extends Controller
     public function store(Request $request )
     {
 
-        // $file = $request->file('image');
-        // $file_name = $file->getClientOriginalName();
-        // InterventionImage::make($file)->resize(50, 70);
-        // $request->file('image')->storeAs('public',$file_name);
-
-
         $file = $request->file('image')->store('public/images');
         $file = str_replace('public/images/','',$file);
-
-        // $img_name = $file->getClientOriginalName();
-        // dd($img_name);
-        
-        
-        // $img = Image::make($file)->resize(50,70);
-        // $file->store('public/images',$file);
-        
-        // $image_path = $img->store('image','public');
 
         Book::create([
             'name' => $request->name,
@@ -77,15 +62,6 @@ class AdminController extends Controller
             'book_user_id' => 1,
             'type_id' => $request->type_id,
         ]);
-            
-        
-
-        // $book->name = $request->name;
-        // $book->author1 = $request->author1;
-        // $book->author2 = $request->author2;
-        // $book->author3 = $request->author3;
-        // $book->image_path = $image_path;
-        // $book->save();
         
         return redirect()->route('admin.show',['admin'=>1]);
 
@@ -141,5 +117,57 @@ class AdminController extends Controller
     public function destroy($id)
     {
         // 
+    }
+
+    public function exceed() {
+
+        $date = Carbon::now()->subweeks(2);
+        $dates = Carbon::now()->subMonth();
+
+        $user = Book::
+        select('date','users.name')
+        ->join('users','books.book_user_id','users.id')
+        ->whereDate('date','<=', $date)
+        ->get()->toArray();
+
+        $users = Book::
+        select('date','users.name')
+        ->join('users','books.book_user_id','users.id')
+        ->whereDate('date','<=', $dates)
+        ->get()->toArray();
+
+        return view('admin_exceed',[
+            'users' => $user,
+            'dates' => $users,
+        ]);
+        
+
+    }
+
+    public function upclose() {
+
+        $date = Carbon::now()->addDay(3);
+        $dates = Carbon::now()->addDay();
+        $today = Carbon::now();
+
+        $user = Book::
+        select('date','users.name')
+        ->join('users','books.book_user_id','users.id')
+        ->whereRaw('DATEDIFF(date,CURRENT_DATE)')
+        ->get()->toArray();
+
+        $users = Book::
+        select('date','users.name')
+        ->join('users','books.book_user_id','users.id')
+        ->whereDate('date','<', $dates)
+        ->get()->toArray();
+        dd($user);
+
+        return view('admin_UpClose',[
+            // 3日前
+            'users' => $user,
+            // 1日前
+            'dates' => $users,
+        ]);
     }
 }

@@ -21,10 +21,12 @@ class SearchController extends Controller
 
         $query = new Book;
 
-        $books = $query->where('name','LIKE',"%{$search}%")
+        $books = $query->where('lending',0)
+        ->where('name','LIKE',"%{$search}%")
         ->orWhere('author1','LIKE',"%{$search}%")
         ->orWhere('author2','LIKE',"%{$search}%")
-        ->orWhere('author3','LIKE',"%{$search}%")->get()->toArray();
+        ->orWhere('author3','LIKE',"%{$search}%")
+        ->get()->toArray();
 
         return view('search',[
             'books' => $books,
@@ -63,7 +65,7 @@ class SearchController extends Controller
         $rent = Book::find($id);
 
         return view('rental',[
-            'book' => $rent,
+            'books' => $rent,
         ]);
     }
 
@@ -81,7 +83,7 @@ class SearchController extends Controller
         // 同じリンクから来てる↓　lending=1(貸し出し中の本)でも借りられてしまう
 
         if($rent['lending'] === 0) {
-            $week = Carbon::now()->addWeeks(2)->format('Y年m月d日');
+            $week = Carbon::now()->addWeeks(2);
 
             $rent->lending = 1;
             $rent->book_user_id = $ID;
@@ -95,8 +97,10 @@ class SearchController extends Controller
 
         }else if($rent['lending'] === 1) {
 
+
             $rent->lending = 0;
             $rent->book_user_id = 1;
+            $rent->date = Null;
             $rent->save();
 
             return view('rental_complete',[
