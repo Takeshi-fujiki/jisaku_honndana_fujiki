@@ -38,11 +38,16 @@ Route::group(['middleware'=>'auth','can:user-higher'],function() {
     Route::get('/mypage', function () {
         return view('mypage');
     });
+<<<<<<< HEAD
     Route::get('comment_del/{id}',[DeleteController::class,'delete'])->name('comment.del');
     Route::get('user_comment',[DisplayController::class,'comment'])->name('user_comment');
     Route::get('books_detail/{id}',[DisplayController::class,'books_detail'])->name('books_detail');
     Route::get('create_comment/{id}',[DisplayController::class,'create_comment'])->name('create_comment');
     Route::post('comment_show/{id}',[DisplayController::class,'comment_show'])->name('comment_show');
+=======
+    // Route::patch('update/{search}','SearchController@update');
+    Route::get('comment_del/{id}',[DeleteController::class,'delete'])->name('comment.del');
+>>>>>>> 5ddd6cb01b5791af95135c2b3c452ce3ea6b0dd3
     
 
 });

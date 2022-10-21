@@ -44,7 +44,10 @@
                 <div class="text-center">
                     <a href=""><img src="{{ asset('storage/images/'.$book['image_path']) }}" width="50" height="70" alt="mybook"></a>
                     <p><a href="{{ route('search.show',['search' => $book['id']]) }}" class="text-decoration-none">{{ $book['name'] }}</a></p>
+<<<<<<< HEAD
                     <a href="{{ route('create_comment',['id' => $book['id']]) }}" class="text-decoretion-none">コメントする</a>
+=======
+>>>>>>> 5ddd6cb01b5791af95135c2b3c452ce3ea6b0dd3
                 </div>
             </div>
             @endforeach
@@ -52,6 +55,7 @@
     </div>
 </div>
 
+<<<<<<< HEAD
 <br>
 <br>
 <br>
@@ -60,6 +64,8 @@
 <br>
 <br>
 
+=======
+>>>>>>> 5ddd6cb01b5791af95135c2b3c452ce3ea6b0dd3
 <style>
     .search_container{
   box-sizing: border-box;

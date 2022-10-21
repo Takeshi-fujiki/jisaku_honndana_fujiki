@@ -167,6 +167,7 @@ class DisplayController extends Controller
             'books' => $book,
         ]);
     }
+<<<<<<< HEAD
 
 
     public function create_comment(int $id) {
@@ -247,4 +248,6 @@ class DisplayController extends Controller
             ]);
     }
 
+=======
+>>>>>>> 5ddd6cb01b5791af95135c2b3c452ce3ea6b0dd3
 }

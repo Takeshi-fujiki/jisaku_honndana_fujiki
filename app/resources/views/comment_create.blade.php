@@ -1,9 +1,13 @@
 @extends('layouts.app')
 @section('content')
 
+<<<<<<< HEAD
 @foreach($books as $book)
 <form method="POST" action="{{ route('comment_show',['id' => $book['id']]) }}">
 @endforeach
+=======
+<form method="POST" action="{{ route('display.store') }}">
+>>>>>>> 5ddd6cb01b5791af95135c2b3c452ce3ea6b0dd3
     @csrf
     <div class="container">
         <div class="panel panel-default">

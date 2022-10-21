@@ -37,7 +37,11 @@
                     <td><img src="{{ asset('storage/images/'.$book['image_path']) }}" width="50" height="70"></td>
                     <td>{{ $book['name'] }}</td>
                     <td>{{ $book['author1'] }},{{ $book['author2'] }},{{ $book['author3'] }}</td>
+<<<<<<< HEAD
                     <td><a href="{{ route('books_detail',['id' => $book['id']]) }}">詳細</a>
+=======
+                    <td><a href="">詳細</a>
+>>>>>>> 5ddd6cb01b5791af95135c2b3c452ce3ea6b0dd3
                     /
                     <a href="{{ route('search.show',['search' => $book['id']]) }}">借りる</a></td>
                 </tr>
