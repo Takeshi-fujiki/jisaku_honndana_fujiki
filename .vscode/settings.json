@@ -1,0 +1,6 @@
+{
+    "git.allowForcePush": true,
+    "github.gitAuthentication": false,
+    "merge-conflict.codeLens.enabled": false,
+    "merge-conflict.decorators.enabled": false
+}

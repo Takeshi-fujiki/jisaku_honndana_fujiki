@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -11,19 +11,25 @@
 
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Scripts bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js” integrity=“sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <!-- Styles bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin=“anonymous”>
+
+    <script src=“https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js”></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js” integrity=“sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-            <!-- Fonts -->
-            <link rel="dns-prefetch" href="//fonts.gstatic.com">
-            <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-            <!-- Styles bootstrap -->
-            <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin=“anonymous”>
+    <script src="{{ asset('js/books.js') }}" defer></script>
+
     </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-light bg-gradient shadow">
             <div class="container">
+                <div class="image">
+                    <img src="{{ asset('storage/images/book_logo.jpg') }}" width="50" height="60">
+                </div>
                 <a class="navbar-brand rogo" href="{{ url('/') }}">
                 AcialLibrary
                 </a>
@@ -61,14 +67,25 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('display.show',['display' => Auth::id() ]) }}">マイページ</a>
-                                    <a class="dropdown-item" href="{{ route('user.edit',['user' => Auth::id()],'edit') }}">アカウント情報変更</a>
-                                    <a class="dropdown-item" href="{{ route('display.index') }}">過去のコメント一覧</a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        ログアウト
-                                    </a>
+                                @can('system-only')
+                                @elsecan('admin-higher')
+                                <a class="dropdown-item" href="{{ route('display.show',['display' => Auth::id() ]) }}">マイページ</a>
+                                <a class="dropdown-item" href="{{ route('user.edit',['user' => Auth::id()],'edit') }}">アカウント情報変更</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    ログアウト
+                                </a>
+                                @elsecan('user-higher')
+                                <a class="dropdown-item" href="{{ route('display.show',['display' => Auth::id() ]) }}">マイページ</a>
+                                <a class="dropdown-item" href="{{ route('user.edit',['user' => Auth::id()],'edit') }}">アカウント情報変更</a>
+                                <a class="dropdown-item" href="{{ route('display.index') }}">過去のコメント一覧</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    ログアウト
+                                </a>
+                                @endcan
                                     
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -95,13 +112,19 @@
             background: -webkit-linear-gradient(0deg, #4158D0, #C850C0 30%, #FFCC70);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-size:30px;
+            font-size:25px;
+            padding: 0.3em 0.7em;
+            margin-bottom: 0.2em;
+            position: relative;
         }
-    </style>
+        .image{
+            position: absolute;
+            left:50px;
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-    @yield('content')
-</body>
+        }
+
+
+    </style>
+@yield('content')
+
 </html>

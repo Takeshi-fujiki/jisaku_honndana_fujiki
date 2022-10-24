@@ -22,8 +22,7 @@ use App\Type;
 
 Auth::routes();
 
-
-Route::resource('/','UserController');
+Route::resource('/','DisplayController');
 
 
 // Route::get('/home', 'HomeController@index')->name('home');
@@ -34,20 +33,15 @@ Route::group(['middleware'=>'auth','can:user-higher'],function() {
     Route::resource('display','DisplayController');
     Route::resource('user','UserController');
     Route::resource('search','SearchController');
-
-    Route::get('/mypage', function () {
-        return view('mypage');
-    });
-<<<<<<< HEAD
+    
     Route::get('comment_del/{id}',[DeleteController::class,'delete'])->name('comment.del');
     Route::get('user_comment',[DisplayController::class,'comment'])->name('user_comment');
     Route::get('books_detail/{id}',[DisplayController::class,'books_detail'])->name('books_detail');
     Route::get('create_comment/{id}',[DisplayController::class,'create_comment'])->name('create_comment');
     Route::post('comment_show/{id}',[DisplayController::class,'comment_show'])->name('comment_show');
-=======
-    // Route::patch('update/{search}','SearchController@update');
+
     Route::get('comment_del/{id}',[DeleteController::class,'delete'])->name('comment.del');
->>>>>>> 5ddd6cb01b5791af95135c2b3c452ce3ea6b0dd3
+    Route::get('showData/{id}',[DeleteController::class,'showData'])->name('showData');
     
 
 });
@@ -55,7 +49,8 @@ Route::group(['middleware'=>'auth','can:user-higher'],function() {
 // 管理者以上
 Route::group(['middleware'=>'auth','can:admin-higher'],function() {
 
-    Route::resource('admin','AdminController');
+Route::resource('/','UserController');
+Route::resource('admin','AdminController');
     // 管理者ページ
     Route::get('admin_books', function () {
         return view('admin_books');
@@ -73,11 +68,8 @@ Route::group(['middleware'=>'auth','can:admin-higher'],function() {
     Route::get('admin_blackList', function () {
         return view('admin_blackList');
     });
-    Route::get('admin_UpClose', function () {
-        return view('admin_UpClose');
-    });
     Route::get('admin_exceed',[AdminController::class,'exceed'])->name('admin_exceed');
-    Route::get('admin_UpClose',[AdminController::class,'upclose'])->name('admin_upclose');
+    Route::get('admin_UpClose',[AdminController::class,'UpClose'])->name('admin_upclose');
 
 });
 

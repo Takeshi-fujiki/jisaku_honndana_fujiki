@@ -6,7 +6,7 @@
     @csrf
     <div class="container">
         <div class="panel panel-default">
-            <h3 class="panel-heading">本の追加</h3>
+            <h3 class="panel-heading gradation02">本の追加</h3>
             <div class="panel-body">
 
                 <div class="form-group">
@@ -45,8 +45,8 @@
                 </div>
                 
                 <div class="form-group">
-                    <button class="btn  btn-danger bg-gradient shadow btn-lg" onclick="history.back('/display')">戻る</button>
-                    <button type="submit" class="btn btn-danger bg-gradient shadow btn-lg">追加</button>
+                    <button class="btn  btn-danger shadow btn-lg gradation02" onclick="history.back('/display')">戻る</button>
+                    <button type="submit" class="btn btn-danger shadow btn-lg gradation02">追加</button>
                 </div>
             </div>
         </div>
@@ -54,5 +54,19 @@
 </form>
 
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
+<style>
+    .gradation02 {
+    background:linear-gradient(to right, #ff7f50 0%, #c71585 100%);color: transparent;
+    -webkit-background-clip: text;
+    display: inline-block;
+    font-weight:bold;
+}
+</style>
 @endsection

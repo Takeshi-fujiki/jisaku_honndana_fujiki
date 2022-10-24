@@ -18,12 +18,29 @@ class DisplayController extends Controller
      */
     public function index()
     {
-        $comment = new Comment;
-        $comments = $comment->where('user_id',Auth::id())
-                            ->where('del_flg',0)   
-                            ->get()->toArray();
+        // $comment = new Comment;
+        // $comments = $comment->where('user_id',Auth::id())
+        //                     ->where('del_flg',0)   
+        //                     ->get()->toArray();
+
+        // $image = new Book;
+        // $images = $image->join('comments','book_id','books.id')
+        //                 ->where('book_id','id')
+        //                 ->get()->toArray();
+
+        $comment = Book::
+        select('comments.comment','comments.id','comments.good','image_path')
+        ->join('comments','comments.book_id','books.id')
+        ->where('comments.user_id',Auth::id())
+        ->where('comments.del_flg',0)->get();
+
+        // $user = Book::
+        // select('books.name as book_name','users.name','books.lending','image_path')
+        // ->join('users','books.book_user_id','users.id')->get();
+
         return view('user_comment',[
-            'comments' => $comments,
+            'comments' => $comment,
+            // 'images' => $images,
         ]);
     }
 
@@ -80,13 +97,13 @@ class DisplayController extends Controller
         $comment = Comment::where('user_id',Auth::id())
                             ->where('del_flg',0)
                             ->get()->toArray();
-        $book = Book::where('book_user_id',Auth::id())
+        $books = Book::where('book_user_id',Auth::id())
                     ->where('lending',1)
                     ->get()->toArray();
 
         return view('mypage',[
             'comments' => $comment,
-            'books' => $book,
+            'books' => $books,
         ]);
     }
 
@@ -167,7 +184,6 @@ class DisplayController extends Controller
             'books' => $book,
         ]);
     }
-<<<<<<< HEAD
 
 
     public function create_comment(int $id) {
@@ -192,21 +208,31 @@ class DisplayController extends Controller
         $comment->save();
 
 
-        $comments = $comment->where('book_id',$id)
-                            ->where('del_flg',0)   
-                            ->get()->toArray();
+        // $comments = $comment->where('book_id',$id)
+        //                     ->where('del_flg',0)   
+        //                     ->get()->toArray();
+
+        // $book = Book::where('id',$id)
+        //             ->get()->toArray();
+
+        // $user = $comment
+        //     ->join('users','user_id','users.id')
+        //     ->where('user_id','users.id')
+        //     ->get();
+    
 
         $book = Book::where('id',$id)
-                    ->get()->toArray();
+                ->get()->toArray();
 
-        $user = $comment
-            ->join('users','user_id','users.id')
-            ->get();
-    
+        $comment = Comment::
+        select('comment','good','users.name')
+        ->join('users','comments.user_id','users.id')
+        ->where('book_id',$id)
+        ->where('del_flg',0)->get();
+
         return view('books_detail',[
-            'comments' => $comments,
+            'comments' => $comment,
             'books' => $book,
-            'users' => $user,
         ]);
         
     }
@@ -229,25 +255,30 @@ class DisplayController extends Controller
 
     public function books_detail(int $id) {
 
-        $comment = new Comment;
-        $comments = $comment->where('book_id',$id)
-                            ->where('del_flg',0)   
-                            ->get()->toArray();
 
         $book = Book::where('id',$id)
                     ->get()->toArray();
 
-        $user = $comment
-            ->join('users','user_id','users.id')
-            ->get();
+        $comment = Comment::
+        select('comment','good','users.name')
+        ->join('users','comments.user_id','users.id')
+        ->where('book_id',$id)
+        ->where('del_flg',0)->get();
 
+    
             return view('books_detail',[
-                'comments' => $comments,
+                'comments' => $comment,
                 'books' => $book,
-                'users' => $user,
+               
             ]);
     }
 
-=======
->>>>>>> 5ddd6cb01b5791af95135c2b3c452ce3ea6b0dd3
+
+    // function showData($id) {
+    // //取得したユーザーの情報を$userに入れてuser/download.blade.phpに返す
+    // $user = userPost::find($id);
+    // return view('user.download', compact('user')); //bladeの中身にしたいbladeファイルを返す
+
+    // }
+
 }

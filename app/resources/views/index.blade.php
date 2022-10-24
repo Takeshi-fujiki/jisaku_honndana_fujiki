@@ -75,12 +75,21 @@
 @can('system-only')
 @elsecan('admin-higher')
 <div class="d-flex align-items-center flex-column">
-    <h2 class="mb-5">管理者メニュー</h2>
+    <h2 class="mb-5 gradation02">管理者メニュー</h2>
 
-    <a class="btn  btn-danger bg-gradient p-2 bd-highlight shadow mb-3" style="width:200px" href="{{ route('admin.show',['admin' => 1]) }}">本の貸し出し状況</a>
-    <a class="btn  btn-danger bg-gradient p-2 bd-highlight shadow mb-3" style="width:200px" href="{{ url('admin_add_books') }}">本の追加</a>
-    <a class="btn  btn-danger bg-gradient p-2 bd-highlight shadow mb-3" style="width:200px" href="{{ url('admin_users') }}">ユーザ管理</a>
+    <a class="btn  btn-danger shadow btn-lg gradation02 shadow mb-5" style="width:200px" href="{{ route('admin.show',['admin' => 1]) }}">本の貸し出し状況</a>
+    <a class="btn  btn-danger shadow btn-lg gradation02 shadow mb-5" style="width:200px" href="{{ url('admin_add_books') }}">本の追加</a>
+    <a class="btn  btn-danger shadow btn-lg gradation02 shadow mb-5" style="width:200px" href="{{ url('admin_users') }}">ユーザ管理</a>
 </div>
+
+<style>
+    .gradation02 {
+    background:linear-gradient(to right, #ff7f50 0%, #c71585 100%);color: transparent;
+    -webkit-background-clip: text;
+    display: inline-block;
+    font-weight:bold;
+}
+</style>
 
 @elsecan('user-higher')
 
@@ -169,6 +178,7 @@
     -webkit-background-clip: text;/*chromeとSafari用、背景色を文字でクリップ*/
     display: inline-block;
 }
+
 </style>
 
 <div class="d-flex justify-content-center">

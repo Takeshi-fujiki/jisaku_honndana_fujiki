@@ -12,6 +12,9 @@ class Comment extends Model
     public function comment() {
         return $this->belongsTo('App\User','user_id','id');
     }
+    public function book() {
+        return $this->belongsTo('App\Book','id','book_id');
+    }
 
 
 }

@@ -5,14 +5,14 @@
     <div class="row justify-content-center border rounded-start">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">ログイン</div>
+                <div class="card-header text-center gradation02"><h4>ログイン</h4></div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right mb-3">メールアドレス</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right gradation02 mb-3">メールアドレス</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right mb-3">パスワード</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right gradation02 mb-3">パスワード</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -44,7 +44,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                    <label class="form-check-label" for="remember">
+                                    <label class="form-check-label mb-3" for="remember">
                                         {{ __('Remember Me') }}
                                     </label>
                                 </div>
@@ -53,14 +53,14 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn">
-                                    <a href="">
+                                <button type="submit" class="btn shadow gradation02">
+                                    <a href="" class="text-decoration-none">
                                     {{ __('Login') }}
                                     </a>
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <a class="btn btn-link shadow gradation02" href="{{ route('password.request') }}">
                                         パスワードを忘れた方はこちら
                                     </a>
                                 @endif
@@ -73,5 +73,14 @@
     </div>
 </div>
 
+
+<style>
+    .gradation02 {
+    background:linear-gradient(to right, #0000cd 0%, #00ffff 100%);color: transparent;
+    -webkit-background-clip: text;
+    display: inline-block;
+    font-weight:bold;
+}
+</style>
 
 @endsection

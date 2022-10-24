@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="d-flex justify-content-center">
-    <h2>本の貸し出し状況</h2>
+    <h2 class="gradation02">本の貸し出し状況</h2>
 </div>
 
 <div class="d-flex justify-content-center">
@@ -35,6 +35,21 @@
 </div>
 
 <div class="d-flex justify-content-center">
-    <button class="btn  btn-danger bg-gradient shadow" onclick="history.back()">戻る</button>
+    <button class="btn  btn-danger shadow btn-lg gradation02 shadow" onclick="history.back()">戻る</button>
 </div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<style>
+    .gradation02 {
+    background:linear-gradient(to right, #ff7f50 0%, #c71585 100%);color: transparent;
+    -webkit-background-clip: text;
+    display: inline-block;
+}
+</style>
 @endsection

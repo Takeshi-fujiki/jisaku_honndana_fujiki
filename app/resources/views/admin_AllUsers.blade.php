@@ -2,6 +2,9 @@
 @section('content')
 
 <div class="d-flex justify-content-center">
+    <h4 class="gradation02 mb-5">全ユーザ一覧</h4>
+</div>
+<div class="d-flex justify-content-center">
  <div class="col-5 ml-3">
      <table class="table table-striped table-hover">
          <thead>
@@ -30,6 +33,24 @@
  </div>
 </div>
 <div class="d-flex justify-content-center">
-<button class="btn  btn-danger bg-gradient shadow btn-lg" onclick="history.back('/display')">戻る</button>
+<button class="btn  btn-danger shadow btn-lg gradation02 shadow" onclick="history.back('/display')">戻る</button>
 </div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<style>
+    .gradation02 {
+    background:linear-gradient(to right, #ff7f50 0%, #c71585 100%);color: transparent;
+    -webkit-background-clip: text;
+    display: inline-block;
+    font-weight:bold;
+}
+</style>
 @endsection

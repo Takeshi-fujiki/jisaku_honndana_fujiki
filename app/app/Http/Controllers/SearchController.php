@@ -21,15 +21,19 @@ class SearchController extends Controller
 
         $query = new Book;
 
-        $books = $query->where('lending',0)
+        $books = $query
         ->where('name','LIKE',"%{$search}%")
         ->orWhere('author1','LIKE',"%{$search}%")
         ->orWhere('author2','LIKE',"%{$search}%")
         ->orWhere('author3','LIKE',"%{$search}%")
-        ->get()->toArray();
+        ->get();
+        $book = $books->where('lending',0)->toArray();
+
+        $week = Carbon::now()->addWeeks(2)->format('Y-m-d');
 
         return view('search',[
-            'books' => $books,
+            'books' => $book,
+            'week' => $week,
         ]);
     }
 
@@ -74,39 +78,43 @@ class SearchController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
      */
-    public function edit($id)
+    public function edit($id,Request  $request)
     {
+        // $book = new Book;
+
+        // $book->lending = 0;
+        // $book->book_user_id = 1;
+        // $book->date = Null;
+        // $book->save();
+
+        // return response()->json('Ok');
+
+
         $rent = Book::find($id);
         $ID = Auth::id();
 
-        // 同じリンクから来てる↓　lending=1(貸し出し中の本)でも借りられてしまう
+            if($rent['lending'] === 0) {
+                $week = Carbon::now()->addWeeks(2)->format('Y-m-d');
 
-        if($rent['lending'] === 0) {
-            $week = Carbon::now()->addWeeks(2);
+                $rent->lending = 1;
+                $rent->book_user_id = $ID;
+                $rent->date = $week;
+                $rent->save();
 
-            $rent->lending = 1;
-            $rent->book_user_id = $ID;
-            $rent->date = $week;
-            $rent->save();
+                return response()->json('Ok');
 
-            return view('rental_complete',[
-                'book' => $rent,
-                'week' => $week,
-            ]);
-
-        }else if($rent['lending'] === 1) {
+            }else if($rent['lending'] === 1) {
 
 
-            $rent->lending = 0;
-            $rent->book_user_id = 1;
-            $rent->date = Null;
-            $rent->save();
+                $rent->lending = 0;
+                $rent->book_user_id = 1;
+                $rent->date = Null;
+                $rent->save();
 
-            return view('rental_complete',[
-                'book' => $rent,
-            ]);
-        }
+                return response()->json('Ok');
+            }
 
     }
 

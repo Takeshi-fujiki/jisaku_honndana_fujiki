@@ -144,30 +144,76 @@ class AdminController extends Controller
 
     }
 
-    public function upclose() {
+    public function UpClose() {
+        $a = 'a';
 
-        $date = Carbon::now()->addDay(3);
-        $dates = Carbon::now()->addDay();
-        $today = Carbon::now();
+        $dates = Carbon::now()->addDays(3)->format('Y-m-d');
+        $date = Carbon::now()->addDays()->format('Y-m-d');
+        
+        $users3 = Book::
+                 where('lending',1)
+               ->where('date' ,'=',$dates)
+               ->get()->toArray();
 
-        $user = Book::
-        select('date','users.name')
-        ->join('users','books.book_user_id','users.id')
-        ->whereRaw('DATEDIFF(date,CURRENT_DATE)')
-        ->get()->toArray();
+        $users1 = Book::
+                 where('lending',1)
+               ->where('date' ,'=',$date)
+               ->get()->toArray();
+        // dd($users1);
 
-        $users = Book::
-        select('date','users.name')
-        ->join('users','books.book_user_id','users.id')
-        ->whereDate('date','<', $dates)
-        ->get()->toArray();
-        dd($user);
+        $book_user = Book::select('users.name')
+                    ->join('users','books.book_user_id','users.id')
+                    ->where('lending',1)
+                    ->where('date' ,'=',$date)
+                    ->get()->toArray();
+                    
 
+        $user_key=[];
+        $user_val=[];
+        foreach($users3 as $key => $user) {
+            $user_key[] = $key;
+            $user_val[] = $user;
+        }
+
+        foreach($users1 as $key => $user) {
+            array_push($user_key,1);
+            array_push($user_val,$user);
+            // dd($user);
+        }        
+        
+        foreach($book_user as $key => $user) {
+            array_push($user_key,2);
+            array_push($user_val,$user);
+        }
+        
+        $users3 = array_combine($user_key,$user_val);
+
+
+        // $array = [
+        //     'name' => [$book_user],
+        //     'date3' => [$users3],
+        //     'date1' => [$users1],
+        // ];
+                    
+
+        
         return view('admin_UpClose',[
-            // 3日前
-            'users' => $user,
-            // 1日前
-            'dates' => $users,
+            'arrays' => $users3,
         ]);
+      
+            
+
+        
+        
+        // dd($user);
+
+        // $users = Book::
+        // select('date','users.name')
+        // ->join('users','books.book_user_id','users.id')
+        // ->whereDate('date','<', $dates)
+        // ->get()->toArray();
+        // // dd($user);
+
+        
     }
 }
