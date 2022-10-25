@@ -69,7 +69,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 @can('system-only')
                                 @elsecan('admin-higher')
-                                <a class="dropdown-item" href="{{ route('display.show',['display' => Auth::id() ]) }}">マイページ</a>
+                                <a class="dropdown-item" href="{{ url('/') }}">トップへ</a>
                                 <a class="dropdown-item" href="{{ route('user.edit',['user' => Auth::id()],'edit') }}">アカウント情報変更</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();

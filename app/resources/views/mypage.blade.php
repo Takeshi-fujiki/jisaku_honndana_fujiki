@@ -26,43 +26,39 @@
 </div>
 
 
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center mb-3">
     <h3 class="gradation01">自分の本棚</h3>
 </div>
 
 <div class="d-flex justify-content-center">
     @foreach($books as $book)
     <div class="mybooks" data-book="{{ $book['id'] }}">
-        <div class="row mb-5">
-                <div class="col-4">
-                    <div class="text-center mb-3">
-                        <a href="" class="mb-3">
-                            <img src="{{ asset('storage/images/'.$book['image_path']) }}" width="50" height="70" alt="mybook">
-                        </a>
-                        <br>
-                        <a href="" id="name" class="text-decoration-none mb-3">
-                            {{ $book['name'] }}
-                        </a>
-                        <br>
-                    </div>
-                 </div>
+        <div class="row-3 justify-content-around">
+            <div class="col">
+                <div class="text-center">
+                    <a href="" class="">
+                        <img src="{{ asset('storage/images/'.$book['image_path']) }}" width="50" height="70" alt="mybook">
+                    </a>
+                    <br>
+                    <a href="" id="name" class="text-decoration-none mb-3">
+                        {{ $book['name'] }}
+                    </a>
+                    <br>
+                </div>
+            </div>
+        </div>
 
-                 <div class="modal-window">
+        <div class="modal-window">
             <div class="d-flex justify-content-center mb-3">
                 <h4 class="gradation02">こちらの本を返却しますか？</h4>
             </div>
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center mb-3">
                 <div class="mybooks1 text-center ">
                     <a href="" data-id ="{{ $book['id'] }}">
                         <img src="{{ asset('storage/images/'.$book['image_path']) }}" width="150" height="230" alt="mybook">
                     </a>
                     <h5>{{ $book['name'] }}</h5>
                 </div>
-            </div>
-            <div class="d-flex justify-content-center mb-3">
-                <a href="{{ route('create_comment',['id' => $book['id']]) }}" class="btn btn-primary shadow gradation01 text-decoration-none">
-                    コメントする
-                </a>
             </div>
             <div class="d-flex justify-content-center">
                 <a href="" id=back class="btn btn-primary shadow btn-lg gradation02">
@@ -75,27 +71,33 @@
         </div>
 
         <div class="modal-window2">
-    <div class="d-flex justify-content-center mb-5">
-        <h4 class="gradation02">ありがとうございました☆</h4>
-    </div>
-    <div class="d-flex justify-content-center mb-3">
-        <div class="mybooks1 text-center">
-            <a href=""><img src="{{ asset('storage/images/'.$book['image_path']) }}" width="150" height="230" alt="mybook"></a>
+            <div class="d-flex justify-content-center mb-3">
+                <h4 class="gradation02">ありがとうございました☆</h4>
+            </div>
+            <div class="d-flex justify-content-center mb-3">
+                <div class="mybooks1 text-center">
+                    <a href=""><img src="{{ asset('storage/images/'.$book['image_path']) }}" width="150" height="230" alt="mybook"></a>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mb-3">
+                <p>【{{ $book['name'] }}】</p>
+                <p>を返却しました</p>
+            </div>
+            
+            <div class="d-flex justify-content-center">
+
+                <a href="{{ route('create_comment',['id' => $book['id']]) }}" id="comment" class="btn btn-primary  btn-lg shadow gradation02 text-decoration-none">
+                    コメントする
+                </a>
+
+                <buuton onclick="window.location.reload()">
+                    <a href="{{ url('/display') }}" class="btn btn-primary shadow btn-lg gradation02" id="top">
+                        TOPへ戻る
+                    </a>
+                </button>
+            </div>
         </div>
     </div>
-    <div class="d-flex justify-content-center mb-3">
-        <p>【{{ $book['name'] }}】</p>
-        <p>を返却しました</p>
-    </div>
-    <div class="d-flex justify-content-center">
-        <a href="{{ url('/display') }}" class="btn btn-primary shadow btn-lg gradation02" id="top">
-            TOPへ戻る
-        </a>
-    </div>
-</div>
-
-    </div>
-</div>
 @endforeach
 </div>
 
@@ -107,22 +109,11 @@
 
 <script>
 
-$(function() {
-    $('#top').on('click',function() {
-        $.ajax({
-            type:'get';
-            url:'',
-            dataType:'',
-            succsess:function(data) {
-                $("").append(data);
-                comsole.log('Ok');
-            },
-            error:function() {
-                console.log('No');
-            }
+    document.addEventListener('DOMCContentLoaded',function() {
+        document.getElementById("top").addEventListener("click",function() {
+            window.location.reload();
         })
-    })
-})
+    });
 
 </script>
    
@@ -233,15 +224,22 @@ $(function() {
     margin-right: 0.5em;
 }
 
-.row{
-    width:60%;
+.row-3{
+    width: 120px;
     margin: 0 auto;
 }
 
+.col{
+    width:120px;
+}
 
 
 #name{
     color:black;
+}
+
+#comment{
+    margin-right: 0.5em;
 }
 
 </style>

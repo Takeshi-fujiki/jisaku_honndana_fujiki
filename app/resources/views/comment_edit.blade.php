@@ -15,14 +15,14 @@
                 </div>
 
                 <div class="form-group">
-                <label class="control-label mb-3" name="comment">本の評価</label>
-                    <select name="select">
+                <label class="control-label mb-3" name="good">本の評価</label>
+                    <select name="good">
                         <option value="">{{ $comment['good'] }}</option>
-                        <option value="1">☆</option>
-                        <option value="2">☆☆</option>
-                        <option value="3">☆☆☆</option>
-                        <option value="4">☆☆☆☆</option>
-                        <option value="5">☆☆☆☆☆</option>
+                        <option value="☆">☆</option>
+                        <option value="☆☆">☆☆</option>
+                        <option value="☆☆☆">☆☆☆</option>
+                        <option value="☆☆☆☆">☆☆☆☆</option>
+                        <option value="☆☆☆☆☆">☆☆☆☆☆</option>
                     </select>
                 </div>
 
@@ -32,7 +32,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <button class="btn btn-primary shadow btn-lg gradation02">送信</button>
+                    <button class="btn btn-primary shadow btn-lg gradation02">編集</button>
                 </div>
             </div>
         </div>

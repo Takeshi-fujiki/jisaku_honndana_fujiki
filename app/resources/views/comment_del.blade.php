@@ -17,7 +17,7 @@
 
                 <div class="form-group">
                 <label class="control-label mb-3" name="comment">本の評価</label>
-                    <select name="select">
+                    <select name="good">
                         <option value="">{{ $comments['good'] }}</option>
                         <option value="1">☆</option>
                         <option value="2">☆☆</option>

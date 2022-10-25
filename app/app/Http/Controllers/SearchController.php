@@ -103,7 +103,10 @@ class SearchController extends Controller
                 $rent->date = $week;
                 $rent->save();
 
-                return response()->json('Ok');
+                return view('rental_complete',[
+                    'book' => $rent,
+                    'week' => $week, 
+                ]);
 
             }else if($rent['lending'] === 1) {
 

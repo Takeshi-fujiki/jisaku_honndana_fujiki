@@ -24,14 +24,11 @@ $(function() {
         })
 
 
-        
-
         function get_data() {
         
-            // let name = document.querySelector().dataset.book;
-            // let num = name.find('return');
-            // let data = document.getElementById(".mybooks");
-            // let id = data.dataset.book;
+            let name = book.find('#return');
+            // let data = document.getElementById(name);
+            let id = name[0].dataset.return;
             // console.log(id);
             $.ajax({
                 url:"/search/"+id+"/edit",
@@ -42,17 +39,18 @@ $(function() {
                     "book_user_id" : 1,
                     "date" : null,
                 },
-                success:function() {
+                success:function(e) {
                     let rtn = book.find('.modal-window2');
                     $(rtn).fadeIn();
                     $('.overlay').fadeIn();
-    
-                    let top = book.find('.modal-window2');
-                    $(top).click(function(event) {
-                        event.preventDefault();
-                        $(rtn).fadeOut();
-                        $('.overlay').fadeOut();
+
+                    let comment = book.find('#comment');
+                    let url ="/create_comment/"+id;
+                    // console.log(url);
+                    $(comment).on('click',function() {
+                        location.replace(url);
                     })
+
                     console.log("成功");
                 },
                 error:function() {
@@ -62,78 +60,64 @@ $(function() {
         };
 
     });
-    
-    // $("#return").on("click",function(event) {
-    //     event.preventDefault();
-    //     $('.modal-window').fadeOut();
-    //     let rtn = book.find('.modal-window2');
-    //     $(".overlay").fadaIn();
-    //     $(rtn).fadaIn();
-    //     // return false;
-    //     get_data();
-    // })
+       
 
     
     // // 本の検索画面から本を借りる時
-    // $("#modal-rental").on("click",function(event){
-    //     event.preventDefault();
-    //     $(".overlay,.modal-rental").fadeIn();
 
-    //     $("#back").on("click",function(event) {
+    // $(".rtl").on("click",function(event){
+
+    //     event.preventDefault();
+    //     let book = $(this).parent('.rental');
+    //     let modal = book.find('.modal-rental');
+   
+    //     $(modal).fadeIn();  
+    //     $(".overlay").fadeIn();
+
+    //     let back = book.find('#back');
+    //     $(back).on("click",function(event) {
     //         event.preventDefault();
     //         $(".overlay,.modal-rental").fadeOut(); 
-    //     }) 
-    // });
+    //         return false;
+    //     })
 
-    // $("#rental").on("click",function(event) {
-    //     event.preventDefault();
-    //     get_data2();
-    // })
+    //     let rental = book.find('#rental');
+    //     $(rental).on('click',function(event) {
+    //         event.preventDefault();
+    //         get_data2();
+    //     })
 
-    // $(".overlay").on("click",function(){
-    //     $(".overlay,.modal-window,.modal-rental").fadeOut();
-    // });
-    
-    
-    
 
-    // function get_data2() {
+    //     function get_data2() {
         
-    //     let data = document.getElementById('rental');
-    //     let id = data.dataset.id;
-    //     console.log(id);
-    //     $.ajax({
-    //         url:"/search/"+id+"/edit",
-    //         type:"GET",
-    //         dataType:"json",
-    //         data:{
-    //             "lending" : 1,
-    //             "book_user_id" : 14,
-    //             "date" : 2022-11-14,
-    //         },
-    //         success:function() {
-    //             $(".overlay,.modal-rental2").fadeIn();
-    //             $("#top").click(function(event) {
-    //                 event.preventDefault();
-    //                 $(".overlay,.modal-rental2").fadeOut();
-    //                 docment.location.href = "route('/')"
-    //             })
-    //             console.log("成功");
-    //         },
-    //         error:function() {
-    //             console.log("通信失敗");
-    //         },
-    //     });
+    //         let name = book.find('#rental');
+    //         // let data = document.getElementById(name);
+    //         let id = name[0].dataset.rental;
+    //         // console.log(id);
+    //         $.ajax({
+    //             url:"/search/"+id+"/edit",
+    //             type:"GET",
+    //             dataType:"json",
+    //             data:{
+    //                 "lending" : 0,
+    //             },
+    //             success:function(e) {
+    //                 let rtl = book.find('.modal-rental2');
+    //                 $(rtl).fadeIn();
+    //                 $('.overlay').fadeIn();
 
+    //                 console.log("成功");
+    //             },
+    //             error:function() {
+    //                 console.log("通信失敗");
+    //             },
+    //         })
+    //     };
 
-    // };
-
+    // });
+  
 
 
 
-    // function send_data() {
-
-    // }
-    
     
 });

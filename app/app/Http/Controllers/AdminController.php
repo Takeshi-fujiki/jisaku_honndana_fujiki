@@ -145,7 +145,7 @@ class AdminController extends Controller
     }
 
     public function UpClose() {
-        $a = 'a';
+        // $a = 'a';
 
         $dates = Carbon::now()->addDays(3)->format('Y-m-d');
         $date = Carbon::now()->addDays()->format('Y-m-d');
@@ -161,59 +161,25 @@ class AdminController extends Controller
                ->get()->toArray();
         // dd($users1);
 
-        $book_user = Book::select('users.name')
+        $book_users = Book::select('users.name','books.date','books.image_path')
                     ->join('users','books.book_user_id','users.id')
                     ->where('lending',1)
-                    ->where('date' ,'=',$date)
+                    ->where('date' ,$date)
                     ->get()->toArray();
-                    
 
-        $user_key=[];
-        $user_val=[];
-        foreach($users3 as $key => $user) {
-            $user_key[] = $key;
-            $user_val[] = $user;
-        }
+        $book = Book::select('users.name','books.date','books.image_path')
+        ->join('users','books.book_user_id','users.id')
+        ->where('lending',1)
+        ->where('date' ,$dates)
+        ->get()->toArray();
 
-        foreach($users1 as $key => $user) {
-            array_push($user_key,1);
-            array_push($user_val,$user);
-            // dd($user);
-        }        
-        
-        foreach($book_user as $key => $user) {
-            array_push($user_key,2);
-            array_push($user_val,$user);
-        }
-        
-        $users3 = array_combine($user_key,$user_val);
-
-
-        // $array = [
-        //     'name' => [$book_user],
-        //     'date3' => [$users3],
-        //     'date1' => [$users1],
-        // ];
-                    
-
+    
         
         return view('admin_UpClose',[
-            'arrays' => $users3,
+         'books' => $book_users,
+         'users' => $book,
         ]);
       
             
-
-        
-        
-        // dd($user);
-
-        // $users = Book::
-        // select('date','users.name')
-        // ->join('users','books.book_user_id','users.id')
-        // ->whereDate('date','<', $dates)
-        // ->get()->toArray();
-        // // dd($user);
-
-        
     }
 }

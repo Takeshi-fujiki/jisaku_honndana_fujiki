@@ -39,7 +39,11 @@
 </div>
 
 <div class="d-flex justify-content-center">
-<button class="btn  btn-primary shadow btn-lg gradation02 shadow" onclick="history.back('/display')">戻る</button>
+<button class="btn  btn-primary shadow btn-lg gradation02 shadow">
+    <a href="{{ route('display.show',['display' => Auth::id() ]) }}" class="text-decoration-none">
+    トップへ戻る
+    </a>
+</button>
     <p>&nbsp</p>
     <p>&nbsp</p>
     <button type="submit" class="btn btn-primary shadow btn-lg gradation02">

@@ -183,23 +183,69 @@
 
 <div class="d-flex justify-content-center">
     <div class="book-janl">
-        <div class="janl-img1">
-            <a href=""><img src="" alt="html"></a>
+        <div class="img1">
+            <a href="{{ route('search.index') }}"><img src="{{ asset('storage/images/html.png') }}" ></a>
         </div>
-        <div class="janl-img2">
-            <a href=""><img src="" alt="css"></a>
+        <div class="img2">
+            <a href="{{ route('search.index') }}"><img src="{{ asset('storage/images/css.png') }}" ></a>
         </div>
-        <div class="janl-img3">
-            <a href=""><img src="" alt="java"></a>
+        <div class="img3">
+            <a href="{{ route('search.index') }}"><img src="{{ asset('storage/images/java.png') }}" ></a>
         </div>
-        <div class="janl-img4">
-            <a href=""><img src="" alt="php"></a>
+        <div class="img4">
+            <a href="{{ route('search.index') }}"> <img src="{{ asset('storage/images/php.png') }}" ></a>
         </div>
-        <div class="janl-img5">
-            <a href=""><img src="" alt="laravel"></a>
+        <div class="img5">
+            <a href="{{ route('search.index') }}"><img src="{{ asset('storage/images/laravel.png') }}" ></a>
         </div>
     </div>
 </div>
+
+<style>
+
+    .img1 img{
+        width:150px;
+    }
+    .img2 img{
+        width:130px;
+    }
+    .img3 img{
+        width:150px;
+    }
+    .img4 img{
+        width:160px;
+    }
+    .img5 img{
+        width:180px;
+        height:80px
+    }
+    .img1{
+        position: absolute;
+        top:45%;
+        left:10%;
+    }
+    .img2{
+        position: absolute;
+        top:70%;
+        left:25%;
+    }
+    .img3{
+        position: absolute;
+        top:45%;
+        left:44%;
+    }
+    .img4{
+        position: absolute;
+        top:80%;
+        left:60%;
+    }
+    .img5{
+        position: absolute;
+        top:50%;
+        left:70%;
+    }
+
+</style>
 @endcan
 @endguest
 @endsection

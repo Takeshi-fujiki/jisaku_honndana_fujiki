@@ -16,12 +16,12 @@
                  <th></th>
             </tr>
             </thead>
-            @foreach($arrays as $array)
+            @foreach($books as $book)
             <tbody>
                 <tr>
-                <td><img src="{{ asset('storage/images/'.$array['image_path']) }}" width="50" height="70" alt="mybook"></td>
-                    <td>{{ $array['name'] }}</td>
-                    <td>{{ $array['date'] }}</td>
+                <td><img src="{{ asset('storage/images/'.$book['image_path']) }}" width="50" height="70" alt="mybook"></td>
+                    <td>{{ $book['name'] }}</td>
+                    <td>{{ $book['date'] }}</td>
                 </tr>
             </tbody>
             @endforeach
@@ -36,12 +36,12 @@
                  <th></th>
             </tr>
             </thead>
-            @foreach($arrays as $array)
+            @foreach($users as $user)
             <tbody>
             <tr>
-            <td><img src="{{ asset('storage/images/'.$array['image_path']) }}" width="50" height="70" alt="mybook"></td>
-                <td>{{ $array['name'] }}</td>
-                <td>{{ $array['date'] }}</td>
+            <td><img src="{{ asset('storage/images/'.$user['image_path']) }}" width="50" height="70" alt="myuser"></td>
+                <td>{{ $user['name'] }}</td>
+                <td>{{ $user['date'] }}</td>
             </tr>
          </tbody>
          @endforeach

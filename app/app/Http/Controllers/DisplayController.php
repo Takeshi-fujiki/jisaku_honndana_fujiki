@@ -18,15 +18,6 @@ class DisplayController extends Controller
      */
     public function index()
     {
-        // $comment = new Comment;
-        // $comments = $comment->where('user_id',Auth::id())
-        //                     ->where('del_flg',0)   
-        //                     ->get()->toArray();
-
-        // $image = new Book;
-        // $images = $image->join('comments','book_id','books.id')
-        //                 ->where('book_id','id')
-        //                 ->get()->toArray();
 
         $comment = Book::
         select('comments.comment','comments.id','comments.good','image_path')
@@ -34,13 +25,10 @@ class DisplayController extends Controller
         ->where('comments.user_id',Auth::id())
         ->where('comments.del_flg',0)->get();
 
-        // $user = Book::
-        // select('books.name as book_name','users.name','books.lending','image_path')
-        // ->join('users','books.book_user_id','users.id')->get();
+ 
 
         return view('user_comment',[
             'comments' => $comment,
-            // 'images' => $images,
         ]);
     }
 
@@ -93,16 +81,12 @@ class DisplayController extends Controller
      */
     public function show(Request $request)
     {
-        // $rent = Book::find(Auth::id());
-        $comment = Comment::where('user_id',Auth::id())
-                            ->where('del_flg',0)
-                            ->get()->toArray();
+
         $books = Book::where('book_user_id',Auth::id())
                     ->where('lending',1)
                     ->get()->toArray();
 
         return view('mypage',[
-            'comments' => $comment,
             'books' => $books,
         ]);
     }
@@ -140,6 +124,7 @@ class DisplayController extends Controller
 
         $edit_id->comment = $request->comment;
         $edit_id->date = $request->date;
+        $edit_id->good = $request->good;
         $edit_id->user_id = $ID;
         $edit_id->save();
 
@@ -151,10 +136,7 @@ class DisplayController extends Controller
                 ->where('lending',1)
                 ->get()->toArray();
 
-        return view('mypage',[
-            'comments' => $comments,
-            'books' => $book,
-        ]);
+        return redirect()->route('display.index');
     }
 
     /**
@@ -179,10 +161,7 @@ class DisplayController extends Controller
                 ->where('lending',1)
                 ->get()->toArray();
 
-        return view('mypage',[
-            'comments' => $comments,
-            'books' => $book,
-        ]);
+        return redirect()->route('display.index');
     }
 
 
@@ -206,19 +185,6 @@ class DisplayController extends Controller
         $comment->user_id = $ID;
         $comment->book_id = $id;
         $comment->save();
-
-
-        // $comments = $comment->where('book_id',$id)
-        //                     ->where('del_flg',0)   
-        //                     ->get()->toArray();
-
-        // $book = Book::where('id',$id)
-        //             ->get()->toArray();
-
-        // $user = $comment
-        //     ->join('users','user_id','users.id')
-        //     ->where('user_id','users.id')
-        //     ->get();
     
 
         $book = Book::where('id',$id)
@@ -273,12 +239,5 @@ class DisplayController extends Controller
             ]);
     }
 
-
-    // function showData($id) {
-    // //取得したユーザーの情報を$userに入れてuser/download.blade.phpに返す
-    // $user = userPost::find($id);
-    // return view('user.download', compact('user')); //bladeの中身にしたいbladeファイルを返す
-
-    // }
 
 }

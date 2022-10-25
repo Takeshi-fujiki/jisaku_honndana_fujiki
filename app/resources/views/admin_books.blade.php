@@ -35,7 +35,10 @@
 </div>
 
 <div class="d-flex justify-content-center">
-    <button class="btn  btn-danger shadow btn-lg gradation02 shadow" onclick="history.back()">戻る</button>
+    <button class="btn  btn-danger shadow btn-lg gradation02 shadow">
+        <a href="{{ url('/') }}" class="text-decoration-none text-danger">
+            戻る
+        </a></button>
 </div>
 
 <br>
