@@ -4,11 +4,11 @@
 
 
 <div class="box">
-    @foreach($books as $book)
+    @foreach($dates as $date)
     <div class="d-flex justify-content-center">
         <ul>
             <li>
-                {{ $book['name'] }}の返却日は<span class="text-danger">【{{ $book['date'] }}】</span>です
+                {{ $date['name'] }}の返却日は<span class="text-danger">【{{ $date['date'] }}】</span>です
             </li>
         </ul>
     </div>

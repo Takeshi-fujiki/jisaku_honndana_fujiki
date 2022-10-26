@@ -59,18 +59,19 @@ class DisplayController extends Controller
         $comment->user_id = $id;
         $comment->save();
 
-        $comments = $comment->where('user_id',Auth::id())
-                            ->where('del_flg',0)   
-                            ->get()->toArray();
 
         $book = Book::where('book_user_id',Auth::id())
                     ->where('lending',1)
                     ->get()->toArray();
+        $date = Book::select('date')
+        ->where('book_user_id',Auth::id())
+        ->where('lending',1)
+        ->get()->toArray();
     
         return view('mypage',[
-            'comments' => $comments,
             'books' => $book,
-        ]);
+            'dates' => $date,
+         ]);
     }
 
     /**
@@ -86,8 +87,14 @@ class DisplayController extends Controller
                     ->where('lending',1)
                     ->get()->toArray();
 
+        $date = Book::select('date','name')
+        ->where('book_user_id',Auth::id())
+        ->where('lending',1)
+        ->get()->toArray();
+
         return view('mypage',[
             'books' => $books,
+            'dates' => $date,
         ]);
     }
 
@@ -102,10 +109,12 @@ class DisplayController extends Controller
     {
 
         $comment = Comment::find($id);
+        $book = Book::where('id',$id)->get()->toArray();
 
         return view('comment_edit',[
             'id' => $id,
             'comment' => $comment,
+            'books' => $book,
         ]);
     }
 

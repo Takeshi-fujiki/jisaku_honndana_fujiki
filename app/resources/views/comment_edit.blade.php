@@ -7,6 +7,9 @@
 
     <div class="container">
         <div class="panel panel-default">
+            @foreach($books as $book)
+            <img src="{{ asset('storage/images/'.$book['image_path']) }}" width="65" height="80">
+            @endforeach
             <h5 class="panel-heading gradation02 mb-5">コメント編集</h5>
             <div class="panel-body">
                 <div class="form-group">

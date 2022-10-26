@@ -28,11 +28,11 @@
         <nav class="navbar navbar-expand-md navbar-light bg-light bg-gradient shadow">
             <div class="container">
                 <div class="image">
-                    <img src="{{ asset('storage/images/book_logo.jpg') }}" width="50" height="60">
+                    <img src="{{ asset('storage/images/book_logo.jpg') }}" width="50" height="50">
+                    <a class="navbar-brand rogo" href="{{ url('/') }}">
+                    AcialLibrary
+                    </a>
                 </div>
-                <a class="navbar-brand rogo" href="{{ url('/') }}">
-                AcialLibrary
-                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -113,13 +113,13 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-size:25px;
-            padding: 0.3em 0.7em;
+            padding: 0.5em 0.7em;
             margin-bottom: 0.2em;
             position: relative;
         }
         .image{
             position: absolute;
-            left:50px;
+            /* left:138px; */
 
         }
 

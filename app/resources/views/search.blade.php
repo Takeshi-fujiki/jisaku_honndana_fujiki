@@ -33,61 +33,73 @@
             </h5>
             @else
             @foreach($books as $book)
-                <div class="rental">
+                <div class="rental" data-rtl="{{ $book['id'] }}">
                     <tr>
                         <td><img src="{{ asset('storage/images/'.$book['image_path']) }}" width="50" height="70"></td>
                         <td>{{ $book['name'] }}</td>
                         <td>{{ $book['author1'] }},{{ $book['author2'] }},{{ $book['author3'] }}</td>
                         <td><a href="{{ route('books_detail',['id' => $book['id']]) }}" class="text-decoration-none">詳細</a>
                         /
-                    <div class="rtl">
-                        <a href="{{ route('search.show',['search' => $book['id']]) }}" class="text-decoration-none">借りる</a></td>
+                        <div class="rtl">
+                            <div class="rtl2">
+                                <a href="" class="text-decoration-none" data-book="{{ $book['id'] }}">借りる</a>
+                            </div>
+
+                            <div class="modal-rental" data-book1="{{ $book['id'] }}">
+                                <div class="d-flex justify-content-center mb-5">
+                                    <h4 class="gradation02">こちらの本を借りますか？</h4>
+                                </div>
+                                <div class="d-flex justify-content-center mb-3">
+                                    <div class="text-center">
+                                        <a href=""><img src="{{ asset('storage/images/'.$book['image_path']) }}" width="150" height="230" alt="mybook"></a>
+                                        <h5>{{ $book['name'] }}</h5>
+                                    </div>
+                                </div>
+                                <div class="back">
+                                    <div class="d-flex justify-content-center">
+                                        <div class="back2">
+                                            <a href="" class="btn btn-primary shadow btn-lg gradation02">
+                                                戻る
+                                            </a>
+                                        </div>
+                                        <div class="rental2" data-rental ="{{ $book['id'] }}">
+                                            <a href="" id="rental" class="btn btn-primary shadow btn-lg gradation02 rental">
+                                                借りる
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="modal-rental2">
+                                <div class="d-flex justify-content-center mb-3">
+                                    <h4 class="gradation02">ありがとうございました☆</h4>
+                                </div>
+                                <div class="d-flex justify-content-center mb-3">
+                                    <div class="mybooks1 text-center">
+                                        <a href=""><img src="{{ asset('storage/images/'.$book['image_path']) }}" width="150" height="230" alt="mybook"></a>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center mb-3">
+                                    <p>【{{ $book['name'] }}】</p>
+                                    <p>を借りました</p>
+                                </div>
+                                <div class="d-flex justify-content-center text-danger mb-3">
+                                    <h5>返却期限は</h5>
+                                    <h5>【{{ $week }}】です。</h5>
+                                </div>
+                                <buuton onclick="window.location.reload()">
+                                    <div class="d-flex justify-content-center">
+                                        <a href="" class="btn btn-primary shadow btn-lg gradation02" id="top">
+                                            TOPへ戻る
+                                        </a>
+                                    </div>
+                                </button>
+                            </div>
+                        </td>
+                        </div>
                     </tr>
-                    </div>
-
-                    <div class="modal-rental">
-                            <div class="d-flex justify-content-center mb-5">
-                                <h4 class="gradation02">こちらの本を借りますか？</h4>
-                            </div>
-                            <div class="d-flex justify-content-center mb-3">
-                                <div class="text-center">
-                                    <a href=""><img src="{{ asset('storage/images/'.$book['image_path']) }}" width="150" height="230" alt="mybook"></a>
-                                    <h5>{{ $book['name'] }}</h5>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-center">
-                                <a href="" id="back" class="btn btn-primary shadow btn-lg gradation02">
-                                    戻る
-                                </a>
-                                <a href="{{ route('search.edit',['search' => $book['id']],'edit') }}" id="rental" data-rental ="{{ $book['id'] }}" class="btn btn-primary shadow btn-lg gradation02">
-                                    借りる
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="modal-rental2">
-                            <div class="d-flex justify-content-center mb-3">
-                                <h4 class="gradation02">ありがとうございました☆</h4>
-                            </div>
-                            <div class="d-flex justify-content-center mb-3">
-                                <div class="mybooks1 text-center">
-                                    <a href=""><img src="{{ asset('storage/images/'.$book['image_path']) }}" width="150" height="230" alt="mybook"></a>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-center mb-3">
-                                <p>【{{ $book['name'] }}】</p>
-                                <p>を借りました</p>
-                            </div>
-                            <div class="d-flex justify-content-center text-danger mb-3">
-                                <h5>返却期限は</h5>
-                                <h5>【{{ $week }}】です。</h5>
-                            </div>
-                            <div class="d-flex justify-content-center">
-                                <a href="" class="btn btn-primary shadow btn-lg gradation02" id="top">
-                                    TOPへ戻る
-                                </a>
-                            </div>
-                        </div>
                 </div>
             @endforeach  
             @endif
@@ -254,7 +266,7 @@
     height:100%;
     z-index:10;
 }
-#back{
+.back2 a{
     margin-right: 0.5em;
 }
 

@@ -103,10 +103,7 @@ class SearchController extends Controller
                 $rent->date = $week;
                 $rent->save();
 
-                return view('rental_complete',[
-                    'book' => $rent,
-                    'week' => $week, 
-                ]);
+                return response()->json('Ok');
 
             }else if($rent['lending'] === 1) {
 
@@ -130,12 +127,7 @@ class SearchController extends Controller
      */
     public function update(Request $request, int $id)
     {
-        // $del_flg = Comment::find($id);
-
-        // $del_flg->del_flg = 1;
-        // $del_flg->save();
-
-        // return view('return');
+        //  
     }
 
     /**

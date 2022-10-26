@@ -216,7 +216,7 @@
         width:160px;
     }
     .img5 img{
-        width:180px;
+        width:220px;
         height:80px
     }
     .img1{

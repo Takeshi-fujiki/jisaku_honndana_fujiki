@@ -3,11 +3,10 @@
 
 @foreach($books as $book)
 <form method="POST" action="{{ route('comment_show',['id' => $book['id']]) }}">
-@endforeach
     @csrf
     <div class="container">
         <div class="panel panel-default">
-            <h5 class="panel-heading gradation02 mb-5">コメント投稿</h5>
+        <img src="{{ asset('storage/images/'.$book['image_path']) }}" width="65" height="80">
             <div class="panel-body">
                 <div class="form-group">
                 <label class="control-label mb-3" name="date">投稿日</label>
@@ -38,6 +37,7 @@
         </div>
     </div>
 </form>
+@endforeach
 
 <br>
 <br>
