@@ -11,7 +11,7 @@
      <table class="table table-striped table-hover">
          <thead>
              <tr>
-                 <th>返却超過:1日前</th>
+                 <th>返却日:1日前</th>
                  <th>返却日</th>
                  <th></th>
             </tr>
@@ -31,7 +31,7 @@
      <table class="table table-striped table-hover">
          <thead>
              <tr>
-                 <th>返却超過:3日前</th>
+                 <th>返却日:3日前</th>
                  <th>返却日</th>
                  <th></th>
             </tr>
