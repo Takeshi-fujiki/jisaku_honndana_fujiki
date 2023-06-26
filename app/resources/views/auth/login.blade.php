@@ -1,93 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- <div class="container">
-    <div class="row justify-content-center border rounded-start">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header text-center gradation02"><h4>ログイン</h4></div>
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right gradation02 mb-3">メールアドレス</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right gradation02 mb-3">パスワード</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label mb-3" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn shadow gradation02">
-                                    <a href="" class="text-decoration-none gradation02">
-                                    {{ __('Login') }}
-                                    </a>
-                                </button>
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link shadow gradation02" href="{{ route('password.request') }}" id="id">
-                                        パスワードを忘れた方はこちら
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card mt-5 shadow login-bg">
-                <div class="pt-3 mb-4 text-center mx-auto" style="width:150px; height:100px;">
+        <div class="col-md-7">
+            <div class="card shadow bg mt-3 login-bg">
+                <div class="pt-3 mb-4 text-center mx-auto mt-3" style="width:150px; height:100px;">
+                <img src="{{ asset('storage/images/book.jpg') }}" width="80" height="80">
                     <h3 class="gradation02">AcialLibrary</h3>
-                    <h4 class="gradation02">ログイン</h4>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('user.login') }}">
                     @csrf
 
                     <div class="form-group row">
-                        <label for="email" class="col-md-4 col-form-label text-md-right gradation02 mb-3">メールアドレス</label>
+                        <label for="email" class="col-md-4 col-form-label text-md-right">メールアドレス</label>
 
-                        <div class="col-md-6">
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        <div class="col-md-6 mb-3">
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -98,10 +30,10 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="password" class="col-md-4 col-form-label text-md-right gradation02 mb-3">パスワード</label>
+                        <label for="password" class="col-md-4 col-form-label text-md-right">パスワード</label>
 
-                        <div class="col-md-6">
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                        <div class="col-md-6 mb-3">
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="password" name="password" required autocomplete="current-password">
 
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -111,28 +43,16 @@
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-6 offset-md-4">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                <label class="form-check-label mb-3" for="remember">
-                                    {{ __('Remember Me') }}
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="form-group">
                         <div class="mb-2 text-center">
-                            <button type="submit" class="btn btn-lg mb-2 gradation02">
-                                <a href="" class="text-decoration-none gradation02">
-                                {{ __('Login') }}
+                            <button type="submit" class="btn btn-outline-primary btn-lg mb-2 mt-3">
+                                <a href="" class="text-decoration-none">
+                                {{ __('ログイン') }}
                                 </a>
                             </button>
                             @if (Route::has('password.request'))
                             <div class="mx-auto text-center" style="width:250px">
-                                <a class="btn btn-link col-md-8 mt-2 gradation02" href="{{ route('password.request') }}" id="id">
+                                <a class="btn text-decoration-none" href="{{ route('password.request') }}" id="id">
                                     パスワードを忘れた方はこちら
                                 </a>
                             </div>
@@ -188,6 +108,28 @@ html{
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 /* body { background:radial-gradient(#F89174, #FFC778); } */
+
+.card-body{
+    flex:1 1 auto;
+    min-height:1px;
+    padding: 1.25rem;
+}
+
+.col-form-label{
+    padding-top: calc(0.375rem + 1px);
+    padding-bottom: calc(0.375rem + 1px);
+    margin-bottom: 0;
+    font-size: inherit;
+    line-height: 1.6;
+}
+.text-md-right{
+    text-align: right !important;
+}
+
+.mt-5{
+    margin-top: 3rem !important;
+}
+
 </style>
 
 @endsection

@@ -1,5 +1,4 @@
 $(function() {
-
     // マイページの本棚から本を返す時
     $(".mybooks").on("click",function(event){
 
@@ -31,7 +30,7 @@ $(function() {
             let id = name[0].dataset.return;
             // console.log(id);
             $.ajax({
-                url:"/search/"+id+"/edit",
+                url:"/user/search/"+id+"/edit",
                 type:"GET",
                 dataType:"json",
                 data:{
@@ -69,8 +68,8 @@ $(function() {
 
         event.preventDefault();
         let modal = $(this).find('.modal-rental');
+        console.log(123444);
         // let next = book.next('.modal-rental')
-        // console.log(modal);
         
         $(modal).fadeIn();  
         $(".overlay").fadeIn();
@@ -105,7 +104,7 @@ $(function() {
             // console.log(id);
             let mod = modal2;
             $.ajax({
-                url:"/search/"+id+"/edit",
+                url:"/user/search/"+id+"/edit",
                 type:"GET",
                 dataType:"json",
                 data:{
@@ -125,6 +124,27 @@ $(function() {
     });
   
 
+    $('.mod').on('click',function(event) {
+        event.preventDefault();
+        let mod = $(this).parent();
+        let find = mod.find('#mod2');
+        $(find).modal();
+    });
+
+
+    $('.edit-btn').on('click',function(event){
+        event.preventDefault();
+        let mod = $(this).parent();
+        let find = mod.find('#comment-edit');
+        $(find).modal();
+    })
+
+    $('.delete-btn').on('click',function(event){
+        event.preventDefault();
+        let mod = $(this).parent();
+        let find = mod.find('#comment-delete');
+        $(find).modal();
+    })
 
 
     

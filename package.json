@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^6.3.0"
+  },
+  "dependencies": {
+    "@fullcalendar/core": "^6.1.4",
+    "@fullcalendar/daygrid": "^6.1.4"
+  }
+}

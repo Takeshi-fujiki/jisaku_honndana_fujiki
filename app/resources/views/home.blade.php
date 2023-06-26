@@ -1,6 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
+
+@can ('admin_only')
+  <span>管理者にだけ表示させる</span>
+
+@elsecan('user')
+
+
+@elsecan('医療')
+
+
+@endcan
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
